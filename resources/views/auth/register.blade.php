@@ -33,71 +33,6 @@
     max-width: 600px;
   }
 </style>
-<script>
-  $(document)
-  .ready(function() {
-    $('.ui.form')
-    .form({
-      fields: {
-        email: {
-          identifier  : 'email',
-          rules: [
-          {
-            type   : 'empty',
-            prompt : 'Please enter your e-mail'
-          },
-          {
-            type   : 'email',
-            prompt : 'Please a valid e-mail address'
-          }
-          ]
-        },
-        firstname: {
-          identifier  : 'firstname',
-          rules: [
-          {
-            type   : 'empty',
-            prompt : 'Please enter your firstname'
-          }
-          ]
-        },
-        lastname: {
-          identifier  : 'lastname',
-          rules: [
-          {
-            type   : 'empty',
-            prompt : 'Please enter your lastname'
-          }
-          ]
-        },
-        username: {
-          identifier  : 'username',
-          rules: [
-          {
-            type   : 'empty',
-            prompt : 'Please enter your username'
-          }
-          ]
-        },
-        password: {
-          identifier  : 'password',
-          rules: [
-          {
-            type   : 'empty',
-            prompt : 'Please enter your password'
-          },
-          {
-            type   : 'length[6]',
-            prompt : 'Your password must be at least 6 characters'
-          }
-          ]
-        }
-      }
-    })
-    ;
-  })
-  ;
-</script>
 
 <div class="ui middle aligned center aligned grid">
   <div class="ui column segment">
@@ -110,7 +45,7 @@
       </div>
     </h3>
     <div class="ui basic segment">
-      <form class="ui large form" method="POST" action="{{ url('/register') }}">
+      <form class="ui large form" id="register" method="POST" action="{{ url('/register') }}">
         <div class="ui error message">
 
           @unless (count($errors) === 0)
@@ -162,18 +97,18 @@
           <i class="tag icon"></i>
           Register via Social
         </h4>
-        <button class="ui facebook button">
+        <a class="ui facebook button" href="{{ url('/auth/facebook') }}">
           <i class="facebook icon"></i>
           Facebook
-        </button>
-        <button class="ui twitter button">
+        </a>
+        <a class="ui twitter button" href="{{ url('/auth/twitter') }}">
           <i class="twitter icon"></i>
           Twitter
-        </button>
-        <button class="ui google plus button">
+        </a>
+        <a class="ui google plus button" href="{{ url('/auth/google') }}">
           <i class="google plus icon"></i>
           Google Plus
-        </button>
+        </a>
     </div>
   </div>
 </div>
@@ -194,5 +129,6 @@
       </div>
     </div>
   </div>
+  <script src="{!! asset('js/register.js') !!}"></script>
 </body>
 </html>

@@ -17,4 +17,14 @@ Route::get('/', function () {
 
 Route::auth();
 
+/*
+ * Social Authentication
+ */
+Route::get('auth/{provider}', [
+    'uses' => 'Auth\SocialAuthController@redirectToProvider',
+    'as' => 'social.login',
+]);
+
+Route::get('auth/{provider}/callback', 'Auth\SocialAuthController@handleProviderCallback');
+
 Route::get('/home', 'HomeController@index');

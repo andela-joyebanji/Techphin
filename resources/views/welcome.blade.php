@@ -15,7 +15,7 @@
   <link rel="stylesheet" type="text/css" href="{!! asset('css/main.css') !!}">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
   <script src="semantic/semantic.min.js"></script>
-   <script src="{!! asset('js/home.js') !!}"></script>
+  <script src="{!! asset('js/home.js') !!}"></script>
 </head>
 <body>
 
@@ -104,18 +104,18 @@
               <i class="tag icon"></i>
               Register via Social
             </h4>
-            <button class="ui facebook button">
+            <a class="ui facebook button" href="{{ url('/auth/facebook') }}">
               <i class="facebook icon"></i>
               Facebook
-            </button>
-            <button class="ui twitter button">
+            </a>
+            <a class="ui twitter button" href="{{ url('/auth/twitter') }}">
               <i class="twitter icon"></i>
               Twitter
-            </button>
-            <button class="ui google plus button">
+            </a>
+            <a class="ui google plus button" href="{{ url('/auth/google') }}">
               <i class="google plus icon"></i>
               Google Plus
-            </button>
+            </a>
         </div>
       </div>
     </div>
@@ -456,5 +456,6 @@
       </div>
     </div>
   </div>
+  <script src="{!! asset('js/register.js') !!}"></script>
 </body>
 </html>

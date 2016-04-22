@@ -28,7 +28,7 @@
       margin-top: -100px;
     }
     .column {
-      max-width: 420px;
+      max-width: 450px;
     }
   </style>
   <script>
@@ -115,6 +115,24 @@
             <div class="ui fluid large primary submit button">Login</div>
         </form>
       </div>
+      <div id="social" class="ui center aligned basic segment">
+        <h4 class="ui horizontal divider header">
+          <i class="tag icon"></i>
+          Login via Social
+        </h4>
+        <a class="ui facebook button" href="{{ url('/auth/facebook') }}">
+          <i class="facebook icon"></i>
+          Facebook
+        </a>
+        <a class="ui twitter button" href="{{ url('/auth/twitter') }}">
+          <i class="twitter icon"></i>
+          Twitter
+        </a>
+        <a class="ui google plus button" href="{{ url('/auth/google') }}">
+          <i class="google plus icon"></i>
+          Google Plus
+        </a>
+    </div>
 
       <div class="ui message">
         New ? <a href="{{ url('/register') }}">Register</a>
