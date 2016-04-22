@@ -15,7 +15,7 @@
   <link rel="stylesheet" type="text/css" href="{!! asset('css/main.css') !!}">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
   <script src="semantic/semantic.min.js"></script>
-  <script src="{!! asset('js/home.js') !!}"></script>
+  <script src="{!! asset('js/home.js', Request::secure()) !!}"></script>
 </head>
 <body>
 
@@ -456,6 +456,6 @@
       </div>
     </div>
   </div>
-  <script src="{!! asset('js/register.js') !!}"></script>
+  <script src="{!! asset('js/register.js', Request::secure()) !!}"></script>
 </body>
 </html>
