@@ -22,7 +22,10 @@
         ],
         "psr-4": {
             "Pyjac\\Techphin\\": "app/"
-        }
+        },
+        "files": [
+            "app/Support/Helpers.php"
+        ]
     },
     "autoload-dev": {
         "classmap": [
