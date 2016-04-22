@@ -12,10 +12,10 @@
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
   <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/master/devicon.min.css">
-  <link rel="stylesheet" type="text/css" href="{!! asset('css/home.css') !!}">
+  <link rel="stylesheet" type="text/css" href="{!! asset('css/main.css') !!}">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
   <script src="semantic/semantic.min.js"></script>
-   <script src="{!! asset('js/home.js') !!}"></script>
+  <script src="{!! asset('js/home.js') !!}"></script>
 </head>
 <body>
 
@@ -48,7 +48,7 @@
           </a>
           <div class="right menu">
             <div class="item">
-                <button class="ui blue basic button">Login </button>
+                <a class="ui blue basic button" href="{{ url('/login') }}"> <i class="sign in icon"></i>Login </a>
             </div>
           </div>
         </div>
@@ -59,7 +59,7 @@
          Browse, Learn and Upload
         </h1>
        <h2>Browse through uploaded videos and Learn new stuffs. Upload videos you like and spread the knowledge.</h2>
-        <button id="browse-vid" class="huge primary ui button">Browse Videos</button>
+        <button id="browse-vid" class="huge primary ui button"><i class="upload cloud icon"></i>Browse Videos</button>
       </div>
 
      <div class="ui stackable two column grid container" >
@@ -68,46 +68,54 @@
       </div>
       <div class="column" id="sign-up-seg">
         <div class="ui form" id="sign-up-form">
-          <div class="two fields">
-            <div class="field">
-              <input type="text" placeholder="First Name">
+          <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
+                        {!! csrf_field() !!}
+            <div class="two fields">
+              <div class="field {{ $errors->has('firstname') ? 'error' : '' }}">
+                <input type="text" name="firstname" placeholder="First Name" value="{{ old('firstname') }}">
+              </div>
+              <div class="field {{ $errors->has('lastname') ? 'error' : '' }}">
+                <input type="text" name="lastname" placeholder="Last Name" value="{{ old('lastname') }}">
+              </div>
+            </div>
+            <div class="two fields">
+              <div class="field {{ $errors->has('username') ? 'error' : '' }}">
+                <input type="text" name="username" placeholder="Username" value="{{ old('username') }}">
+              </div>
+              <div class="field {{ $errors->has('email') ? 'error' : '' }}">
+                <input type="text" name="email" placeholder="Email" value="{{ old('email') }}">
+            </div>
+            </div>
+            <div class="two fields">
+              <div class="field {{ $errors->has('password') ? 'error' : '' }}">
+                <input type="password" name="password" placeholder="Password" autocomplete="off">
+              </div>
+              <div class="field {{ $errors->has('password_confirmation') ? 'error' : '' }}">
+                <input type="password" name="password_confirmation" placeholder="Confirm Password">
+              </div>
             </div>
             <div class="field">
-              <input type="text" placeholder="Last Name">
+              <button class="fluid huge basic blue ui button"><i class="send outline in icon"></i>Register - It's free !!</button>
             </div>
-          </div>
-          <div class="two fields">
-            <div class="field">
-              <input type="text" placeholder="Username">
-            </div>
-            <div class="field">
-              <input type="password" placeholder="Password" autocomplete="off">
-            </div>
-          </div>
-          <div class="field">
-            <input type="text" placeholder="Email">
-          </div>
-          <div class="field">
-            <button class="fluid huge basic blue ui button">Sign up - It's free !!</button>
-          </div>
+          </form>
         </div>
         <div id="social" class="ui center aligned basic segment">
             <h4 class="ui horizontal divider header">
               <i class="tag icon"></i>
               Register via Social
             </h4>
-            <button class="ui facebook button">
+            <a class="ui facebook button" href="{{ url('/auth/facebook') }}">
               <i class="facebook icon"></i>
               Facebook
-            </button>
-            <button class="ui twitter button">
+            </a>
+            <a class="ui twitter button" href="{{ url('/auth/twitter') }}">
               <i class="twitter icon"></i>
               Twitter
-            </button>
-            <button class="ui google plus button">
+            </a>
+            <a class="ui google plus button" href="{{ url('/auth/google') }}">
               <i class="google plus icon"></i>
               Google Plus
-            </button>          
+            </a>
         </div>
       </div>
     </div>
@@ -448,5 +456,6 @@
       </div>
     </div>
   </div>
+  <script src="{!! asset('js/register.js') !!}"></script>
 </body>
 </html>

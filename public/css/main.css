@@ -21,7 +21,9 @@
     font-weight: bold;
     font-style: normal;
   }
-
+html, .ui.header {
+  font-family: "Open Sans",sans-serif;
+}
 
   a#logo-text h1 {
       font-family: 'Lora', serif;
