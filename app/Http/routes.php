@@ -27,4 +27,7 @@ Route::get('auth/{provider}', [
 
 Route::get('auth/{provider}/callback', 'Auth\SocialAuthController@handleProviderCallback');
 
+Route::get('/user/dashboard', function(){
+    return view('user.dashboard');
+});
 Route::get('/home', 'HomeController@index');
