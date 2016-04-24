@@ -10,11 +10,11 @@
   <title>Dashboard - Techphin </title>
   <link href='https://fonts.googleapis.com/css?family=Lora:700italic' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" type="text/css" href="{{  url('semantic/semantic.min.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ resolve_asset('semantic/semantic.min.css') }}">
   <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/master/devicon.min.css">
   <link rel="stylesheet" type="text/css" href="{!! resolve_asset('css/main.css') !!}">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
-  <script src="{{ url('semantic/semantic.min.js') }}"></script>
+  <script src="{{ resolve_asset('semantic/semantic.min.js') }}"></script>
   <script src="{!! resolve_asset('js/home.js') !!}"></script>
 </head>
 <body>
