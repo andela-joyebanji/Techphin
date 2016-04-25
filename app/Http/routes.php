@@ -24,11 +24,14 @@ Route::get('auth/{provider}', [
     'uses' => 'Auth\SocialAuthController@redirectToProvider',
     'as' => 'social.login',
 ]);
-
 Route::get('auth/{provider}/callback', 'Auth\SocialAuthController@handleProviderCallback');
 
-Route::get('/user/dashboard', 'UserDashboardController@index');
-Route::get('/user/upload', 'UserDashboardController@upload');
-Route::post('/user/upload', 'UserDashboardController@storeVideo');
-
-Route::get('/home', 'HomeController@index');
+/**
+ * User Dashboard routes
+ */
+Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
+    // place your route definitions here
+    Route::get('/dashboard', 'UserDashboardController@index');
+    Route::get('/upload', 'UserDashboardController@upload');
+    Route::post('/upload', 'UserDashboardController@storeVideo');
+});
