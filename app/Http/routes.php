@@ -27,7 +27,8 @@ Route::get('auth/{provider}', [
 
 Route::get('auth/{provider}/callback', 'Auth\SocialAuthController@handleProviderCallback');
 
-Route::get('/user/dashboard', function(){
-    return view('user.dashboard');
-});
+Route::get('/user/dashboard', 'UserDashboardController@index');
+Route::get('/user/upload', 'UserDashboardController@upload');
+Route::post('/user/upload', 'UserDashboardController@storeVideo');
+
 Route::get('/home', 'HomeController@index');
