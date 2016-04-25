@@ -36,11 +36,12 @@ $factory->define(Pyjac\Techphin\Tag::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(Pyjac\Techphin\Video::class, function (Faker\Generator $faker) {
+
     return [
         'title'       => $faker->name,
         'link'        => 'https://www.youtube.com/watch?v=Yhn5snJGvAo',
         'description' => $faker->sentence(10),
-        'user_id'     => $faker->numberBetween(1, 10),
-        'category_id' => $faker->numberBetween(1, 10)
+        'user_id'     => factory(Pyjac\Techphin\User::class)->create()->id,
+        'category_id' => factory(Pyjac\Techphin\Category::class)->create()->id
     ];
 });

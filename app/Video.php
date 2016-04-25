@@ -15,7 +15,7 @@ class Video extends Model
      */
     public function owner()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
      /**
