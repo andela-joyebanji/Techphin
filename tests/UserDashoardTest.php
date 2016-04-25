@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class UserDashoardTest extends TestCase
 {
+    use DatabaseTransactions;
     /**
      * A basic test example.
      *
@@ -52,7 +53,6 @@ class UserDashoardTest extends TestCase
     {
         $user = factory(Pyjac\Techphin\User::class)->create();
         $category = factory(Pyjac\Techphin\Category::class)->create();
-
         $this->actingAs($user)
              ->visit('/user/upload')
              ->type('', 'title')
@@ -67,8 +67,6 @@ class UserDashoardTest extends TestCase
     public function testVideoUploadFailWhenRequiredFieldsAreEmpty()
     {
         $user = factory(Pyjac\Techphin\User::class)->create();
-        $category = factory(Pyjac\Techphin\Category::class)->create();
-
         $this->actingAs($user)
              ->visit('/user/upload')
              ->type('', 'title')
