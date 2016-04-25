@@ -82,4 +82,17 @@ class UserDashoardTest extends TestCase
              ->see('The description field is required.')
              ->see('The category id field is required.');
     }
+
+    public function testUnAuthorizedUserRedirectToLogin()
+    {
+        $this->visit('/user/upload')
+             ->seePageIs('/login');
+
+        $this->visit('/user/dashboard')
+             ->seePageIs('/login');
+
+        $response = $this->call('POST', '/user/upload', []);
+        $this->assertRedirectedTo('/login');
+
+    }
 }
