@@ -10,20 +10,21 @@
   <title>@yield('title') &#187; - Techphin </title>
   <link href='https://fonts.googleapis.com/css?family=Lora:700italic' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
+  <link rel="stylesheet" type="text/css" href="{{ url('semantic/semantic.min.css') }}">
   <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/master/devicon.min.css">
   <link rel="stylesheet" type="text/css" href="{!! resolve_asset('css/main.css') !!}">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
-  <script src="semantic/semantic.min.js"></script>
+  <script src="{{ url('semantic/semantic.min.js') }}"></script>
   <script src="{!! resolve_asset('js/page.js') !!}"></script>
+  <style>
+      #videos-list {
+          padding: 6em 0em;
+      }
+  </style>
   @yield('styles')
 </head>
 <body>
-<style>
-    #videos-list {
-        padding: 6em 0em;
-    }
-</style>
+
   <!-- Page Contents -->
     <div class="pusher">
         <div class="ui fixed top borderless menu" id="navBarContext">
@@ -67,12 +68,9 @@
             </div>
         </div>
         <div class="ui vertical segment secondary" id="videos-list">
-            <div class="ui container">
-                <div class="ui stackable equal height stackable grid">
-                    @include('partials.categories')
-                    @yield('content')
-                </div>
-            </div>
+
+                @yield('pageContent')
+
         </div>
         @include('partials.footer')
     </div>

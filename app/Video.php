@@ -48,4 +48,9 @@ class Video extends Model
         }
         $this->tags()->attach($tagsCollection);
     }
+
+    public function scopeRelatedVideos($query, $limit = 5)
+    {
+        return $query->where('category_id', '>', $this->category_id)->take(5)->get();
+    }
 }
