@@ -26,6 +26,7 @@ $factory->define(Pyjac\Techphin\User::class, function (Faker\Generator $faker) {
 $factory->define(Pyjac\Techphin\Category::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->unique()->word,
+        'icon' => $faker->randomElement(['devicon-php-plain', 'devicon-laravel-plain', 'devicon-javascript-plain', 'devicon-angularjs-plain'])
     ];
 });
 
