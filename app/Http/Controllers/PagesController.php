@@ -30,4 +30,15 @@ class PagesController extends Controller
         $categories = Category::select(['id', 'name', 'icon'])->get();
         return view('videos', compact('videos'), compact('categories'));
     }
+
+    /**
+     * Show videos list.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function video(Video $video)
+    {
+      $relatedVideos = $video->relatedVideos();
+      return view('video', compact('video', 'relatedVideos'));
+    }
 }

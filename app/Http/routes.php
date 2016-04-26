@@ -13,6 +13,7 @@
 
 Route::get('/', 'PagesController@index');
 Route::get('/videos', 'PagesController@videos');
+Route::get('/videos/{video}', 'PagesController@video');
 
 Route::auth();
 
