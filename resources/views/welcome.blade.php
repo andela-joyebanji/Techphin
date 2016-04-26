@@ -10,11 +10,11 @@
   <title>Homepage - Techphin </title>
   <link href='https://fonts.googleapis.com/css?family=Lora:700italic' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" type="text/css" href="semantic/semantic.min.css">
+  <link rel="stylesheet" type="text/css" href="{!! resolve_asset('semantic/semantic.min.css') !!}">
   <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/master/devicon.min.css">
   <link rel="stylesheet" type="text/css" href="{!! resolve_asset('css/main.css') !!}">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
-  <script src="semantic/semantic.min.js"></script>
+  <script src="{!! resolve_asset('semantic/semantic.min.js') !!}"></script>
   <script src="{!! resolve_asset('js/home.js') !!}"></script>
 </head>
 <body>
@@ -124,41 +124,7 @@
   <div class="ui vertical segment secondary" id="popular-vid-container">
     <div class="ui container">
       <div class="ui stackable equal height stackable grid">
-        <div class="ui three wide column rail computer only" id="categories">
-          <div class="ui sticky">
-            <div class="ui stacked segment">
-              <div class="ui middle aligned selection list">
-
-                <h3 class="ui header dividing">Categories</h3>
-
-                <div class="item">
-                  <i class="devicon-php-plain icon"></i>
-                  <div class="content">
-                   PHP
-                  </div>
-                </div>
-                <div class="item">
-                  <i class="devicon-laravel-plain icon"></i>
-                  <div class="content">
-                    Laravel
-                  </div>
-                </div>
-                <div class="item">
-                  <i class="devicon-javascript-plain icon"></i>
-                  <div class="content">
-                    Javascript
-                  </div>
-                </div>
-                <div class="item">
-                  <i class="devicon-angularjs-plain icon"></i>
-                  <div class="content">
-                    Angular
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        @include('partials/categories')
         <div class="thirteen wide computer column sixteen wide mobile" id="popular-videos">
           <div class="ui segment">
             <h3 class="ui horizontal divider header">
@@ -166,279 +132,51 @@
               Popular Videos
             </h3>
             <div class="ui four stackable cards">
-              <div class="card">
-                <a href="http://google.com" class="image">
-                  <div class="ui dimmer">
-                    <div class="content">
-                      <div class="center">
-                        <div class="ui inverted button">
-                        <i class="icon play"></i>Play</div>
+              @forelse ($videos as $video)
+                  <div class="card">
+                    <a href="{{ url('videos/'.$video->id) }}" class="image">
+                      <div class="ui dimmer">
+                        <div class="content">
+                          <div class="center">
+                            <div class="ui inverted button">
+                            <i class="icon play"></i>Play</div>
+                          </div>
+                        </div>
                       </div>
+                      <img src="http://img.youtube.com/vi/{{ substr($video->link, 32) }}/mqdefault.jpg">
+                    </a>
+                    <div class="content">
+                      <div class="header">
+                        <a href="{{ url('videos/'.$video->id) }}">
+                          {{ str_limit($video->title, 70) }}
+                        </a>
+                      </div>
+                      <div class="meta">
+                        by: <a href="{{ url('videos/user/'.$video->owner->username) }}">{{ str_limit(ucwords($video->owner->username), 20) }}</a>
+                      </div>
+                      <span>
+                        <i class="icon unhide"></i>151 Views
+                      </span>
                     </div>
                   </div>
-                  <img src="http://img.youtube.com/vi/xbwBUHgHVa0/mqdefault.jpg">
-                </a>
-                <div class="content">
-                  <div class="header">I Concur (Official Music Video) - Timaya ft. Don Jazzy | Official Timaya</div>
-                  <div class="meta">
-                   by: <a>OfficialTimaya</a>
-                  </div>
-                  <span>
-                    151 Views
-                  </span>
-                </div>
-              </div>
-              <div class="card">
-                <a href="#" class="image">
-                  <div class="ui dimmer">
-                    <div class="content">
-                      <div class="center">
-                        <div class="ui inverted button">
-                        <i class="icon play"></i>Play</div>
-                      </div>
-                    </div>
-                  </div>
-                  <img src="http://img.youtube.com/vi/C4nT3Od5cxI/mqdefault.jpg">
-                </a>
-                <div class="content">
-                  <div class="header">Harrysong - Reggae Blues (Official Video) ft. Olamide, Iyanya, Kcee, Orezi</div>
-                  <div class="meta">
-                    by <a>HarrySongVEVO</a>
-                  </div>
-                  <span>
-                    151 Views
-                  </span>
-                </div>
-              </div>
-              <div class="card">
-                <a href="#" class="image">
-                  <div class="ui dimmer">
-                    <div class="content">
-                      <div class="center">
-                        <div class="ui inverted button">
-                        <i class="icon play"></i>Play</div>
-                      </div>
-                    </div>
-                  </div>
-                  <img src="http://img.youtube.com/vi/SFmZKO35SfQ/mqdefault.jpg">
-                </a>
-                <div class="content">
-                  <div class="header">Olamide - Bobo [Official Video]</div>
-                  <div class="meta">
-                    <a>OlamideVEVO</a>
-                  </div>
-                  <span>
-                    151 Views
-                  </span>
-                </div>
-              </div>
-              <div class="card">
-                <a href="" class="image">
-                  <div class="ui dimmer">
-                    <div class="content">
-                      <div class="center">
-                        <div class="ui inverted button">
-                        <i class="icon play"></i>Play</div>
-                      </div>
-                    </div>
-                  </div>
-                  <img src="http://img.youtube.com/vi/G_fTavPgdtw/mqdefault.jpg">
-                </a>
-                <div class="content">
-                  <div class="header">Laravel 5 (5.1) for beginners #7 Forms &amp; HTML</div>
-                  <div class="meta">
-                    <a>Code Executable</a>
-                  </div>
-                  <span>
-                    151 Views
-                  </span>
-                </div>
-              </div>
+              @empty
+                  <p> :( No videos uploaded yet.</p>
+              @endforelse
+            </div>
+            <div class="ui middle aligned stackable grid container">
+              <div class="row">
+                <div class="center aligned column">
+                  <a href="{{ url('/videos') }}" class="ui button">View more<i class="right arrow icon"></i></a>
 
-              <!-- Second -->
-              <div class="card">
-                <div class="image">
-                  <div class="ui dimmer">
-                    <div class="content">
-                      <div class="center">
-                        <div class="ui inverted button">
-                        <i class="icon play"></i>Play</div>
-                      </div>
-                    </div>
-                  </div>
-                  <img src="http://img.youtube.com/vi/xbwBUHgHVa0/mqdefault.jpg">
-                </div>
-                <div class="content">
-                  <div class="header">I Concur (Official Music Video) - Timaya ft. Don Jazzy | Official Timaya</div>
-                  <div class="meta">
-                   by: <a>OfficialTimaya</a>
-                  </div>
-                  <span>
-                    151 Views
-                  </span>
-                </div>
-              </div>
-              <div class="card">
-                <div class="image">
-                  <div class="ui dimmer">
-                    <div class="content">
-                      <div class="center">
-                        <div class="ui inverted button">
-                        <i class="icon play"></i>Play</div>
-                      </div>
-                    </div>
-                  </div>
-                  <img src="http://img.youtube.com/vi/C4nT3Od5cxI/mqdefault.jpg">
-                </div>
-                <div class="content">
-                  <div class="header">Harrysong - Reggae Blues (Official Video) ft. Olamide, Iyanya, Kcee, Orezi</div>
-                  <div class="meta">
-                    by <a>HarrySongVEVO</a>
-                  </div>
-                  <span>
-                    151 Views
-                  </span>
-                </div>
-              </div>
-              <div class="card">
-                <div class="image">
-                  <div class="ui dimmer">
-                    <div class="content">
-                      <div class="center">
-                        <div class="ui inverted button">
-                        <i class="icon play"></i>Play</div>
-                      </div>
-                    </div>
-                  </div>
-                  <img src="http://img.youtube.com/vi/SFmZKO35SfQ/mqdefault.jpg">
-                </div>
-                <div class="content">
-                  <div class="header">Olamide - Bobo [Official Video]</div>
-                  <div class="meta">
-                    <a>OlamideVEVO</a>
-                  </div>
-                  <span>
-                    151 Views
-                  </span>
-                </div>
-              </div>
-              <div class="card">
-                <div class="image">
-                  <div class="ui dimmer">
-                    <div class="content">
-                      <div class="center">
-                        <div class="ui inverted button">
-                        <i class="icon play"></i>Play</div>
-                      </div>
-                    </div>
-                  </div>
-                  <img src="http://img.youtube.com/vi/G_fTavPgdtw/mqdefault.jpg">
-                </div>
-                <div class="content">
-                  <div class="header">Laravel 5 (5.1) for beginners #7 Forms &amp; HTML</div>
-                  <div class="meta">
-                    <a>Code Executable</a>
-                  </div>
-                  <span>
-                    151 Views
-                  </span>
-                </div>
-              </div>
-
-              <!-- Third -->
-
-              <div class="card">
-                <div class="image">
-                  <div class="ui dimmer">
-                    <div class="content">
-                      <div class="center">
-                        <div class="ui inverted button">
-                        <i class="icon play"></i>Play</div>
-                      </div>
-                    </div>
-                  </div>
-                  <img src="http://img.youtube.com/vi/xbwBUHgHVa0/mqdefault.jpg">
-                </div>
-                <div class="content">
-                  <div class="header">I Concur (Official Music Video) - Timaya ft. Don Jazzy | Official Timaya</div>
-                  <div class="meta">
-                   by: <a>OfficialTimaya</a>
-                  </div>
-                  <span>
-                    151 Views
-                  </span>
-                </div>
-              </div>
-              <div class="card">
-                <div class="image">
-                  <div class="ui dimmer">
-                    <div class="content">
-                      <div class="center">
-                        <div class="ui inverted button">
-                        <i class="icon play"></i>Play</div>
-                      </div>
-                    </div>
-                  </div>
-                  <img src="http://img.youtube.com/vi/C4nT3Od5cxI/mqdefault.jpg">
-                </div>
-                <div class="content">
-                  <div class="header">Harrysong - Reggae Blues (Official Video) ft. Olamide, Iyanya, Kcee, Orezi</div>
-                  <div class="meta">
-                    by <a>HarrySongVEVO</a>
-                  </div>
-                  <span>
-                    151 Views
-                  </span>
-                </div>
-              </div>
-              <div class="card">
-                <div class="image">
-                  <div class="ui dimmer">
-                    <div class="content">
-                      <div class="center">
-                        <div class="ui inverted button">
-                        <i class="icon play"></i>Play</div>
-                      </div>
-                    </div>
-                  </div>
-                  <img src="http://img.youtube.com/vi/SFmZKO35SfQ/mqdefault.jpg">
-                </div>
-                <div class="content">
-                  <div class="header">Olamide - Bobo [Official Video]</div>
-                  <div class="meta">
-                    <a>OlamideVEVO</a>
-                  </div>
-                  <span>
-                    151 Views
-                  </span>
-                </div>
-              </div>
-              <div class="card">
-                <div class="image">
-                  <div class="ui dimmer">
-                    <div class="content">
-                      <div class="center">
-                        <div class="ui inverted button">
-                        <i class="icon play"></i>Play</div>
-                      </div>
-                    </div>
-                  </div>
-                  <img src="http://img.youtube.com/vi/G_fTavPgdtw/mqdefault.jpg">
-                </div>
-                <div class="content">
-                  <div class="header">Laravel 5 (5.1) for beginners #7 Forms &amp; HTML</div>
-                  <div class="meta">
-                    <a>Code Executable</a>
-                  </div>
-                  <span>
-                    151 Views
-                  </span>
                 </div>
               </div>
             </div>
           </div>
+
         </div>
+
       </div>
+
     </div>
   </div>
 

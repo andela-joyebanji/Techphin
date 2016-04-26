@@ -23,4 +23,11 @@ class PageTest extends TestCase
       $this->visit('/videos/'.$video->id)
              ->see($video->description);
     }
+
+    public function testHomePage()
+    {
+      $this->visit('/')
+             ->see("Popular Videos")
+             ->see("Browse, Learn and Upload");
+    }
 }
