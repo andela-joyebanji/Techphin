@@ -53,4 +53,9 @@ class Video extends Model
     {
         return $query->where('category_id', '>', $this->category_id)->take(5)->get();
     }
+
+    public function scopePopular($query, $limit = 12)
+    {
+        return $query->with(['category','owner'])->take($limit);
+    }
 }

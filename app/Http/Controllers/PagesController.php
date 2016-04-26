@@ -16,7 +16,9 @@ class PagesController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+      $videos = Video::popular()->get();
+      $categories = Category::select(['id', 'name', 'icon'])->get();
+      return view('welcome', compact('videos', 'categories'));
     }
 
     /**
