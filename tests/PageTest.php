@@ -13,10 +13,14 @@ class PageTest extends TestCase
 
     public function testVideoListingPage()
     {
-        $this->visit('/videos')
+      $this->visit('/videos')
              ->see('All Videos');
     }
+
+    public function testVideoPage()
+    {
+      $video = factory(Pyjac\Techphin\Video::class)->create();
+      $this->visit('/videos/'.$video->id)
+             ->see($video->description);
+    }
 }
-
-
-
