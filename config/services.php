@@ -29,22 +29,23 @@ return [
         'secret' => env('SPARKPOST_SECRET'),
     ],
 
-    'facebook' => [
-        'client_id' => '164616147266856',
-        'client_secret' => 'cd8caae6643f9dd1962b1fc3ed09bece',
-        'redirect' => 'http://techphin.app/auth/facebook/callback',
-    ],
     'google' => [
-        'client_id' => '262589096853-3d9of82l2v4r8lqdos8a17jdchj05a4b.apps.googleusercontent.com',
-        'client_secret' => 'ZkPCByFfnq3qAwfpWxuPkk4s',
-        'redirect' => 'http://techphin.app/auth/google/callback',
-    ],
-    'twitter' => [
-        'client_id' => 'mnEpq0Xeebm1NBOBZ4IkBMqgU',
-        'client_secret' => 'no5Pi3U8rUVolc2x4ceqVImy02eL9lANeqAlwQKHuYoHetRlkn',
-        'redirect' => 'http://techphin.app/auth/twitter/callback',
+        'client_id' => env('GOOGLE_KEY'),
+        'client_secret' => env('GOOGLE_SECRET'),
+        'redirect' => env('GOOGLE_REDIRECT_URI'),
     ],
 
+    'twitter' => [
+        'client_id' => env('TWITTER_ID'),
+        'client_secret' => env('TWITTER_SECRET'),
+        'redirect' => env('TWITTER_URL'),
+    ],
+
+    'facebook' => [
+        'client_id' => env('FACEBOOK_ID'),
+        'client_secret' => env('FACEBOOK_SECRET'),
+        'redirect' => env('FACEBOOK_URL'),
+    ],
     'stripe' => [
         'model' => App\User::class,
         'key' => env('STRIPE_KEY'),
