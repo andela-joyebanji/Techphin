@@ -28,4 +28,27 @@ class User extends Authenticatable
     {
         return $this->hasMany(Video::class);
     }
+
+    public function favourites()
+    {
+        return $this->belongsToMany(Video::class, 'favourites');
+    }
+
+    public function favourite($videoId)
+    {
+        $favourites = $this->favourites();
+        if(!$this->isFavourited($videoId)) {
+            $favourites->attach($videoId);
+            return 1;
+        }
+        else {
+            $favourites->detach($videoId);
+            return -1;
+        }
+    }
+
+    public function isFavourited($videoId)
+    {
+        return !is_null($this->favourites()->find($videoId));
+    }
 }

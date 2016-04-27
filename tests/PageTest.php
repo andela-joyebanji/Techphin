@@ -24,6 +24,13 @@ class PageTest extends TestCase
              ->see($video->description);
     }
 
+    public function testVideoPageShowsFavourite()
+    {
+      $video = factory(Pyjac\Techphin\Video::class)->create();
+      $this->visit('/videos/'.$video->id)
+             ->see($video->favourites()." favourites");
+    }
+
     public function testVideoPageViews()
     {
       $video = factory(Pyjac\Techphin\Video::class)->create();
