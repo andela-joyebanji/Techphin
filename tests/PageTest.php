@@ -31,6 +31,13 @@ class PageTest extends TestCase
              ->see(($video->views + 1)." views");
     }
 
+    public function testCategoryVideos()
+    {
+      $category = factory(Pyjac\Techphin\Category::class)->create();
+      $this->visit('/videos/category/'.$category->name)
+             ->see("Videos in Category : ".$category->name);
+    }
+
     public function testHomePage()
     {
       $this->visit('/')

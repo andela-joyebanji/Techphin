@@ -4,7 +4,7 @@
             <div class="ui middle aligned selection list">
                 <h3 class="ui header dividing">Categories</h3>
                 @forelse ($categories as $category)
-                    <a href="{{ url('/vidoes/category/'.$category->name) }}" class="item">
+                    <a href="{{ url('/videos/category/'.$category->name) }}" class="item">
                         <i class="{{ $category->icon }}  icon"></i>
                         <div class="content">
                             {{ $category->name }}
