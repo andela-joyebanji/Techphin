@@ -98,7 +98,7 @@
                   <img src="http://img.youtube.com/vi/{{ substr($video->link, 32) }}/mqdefault.jpg">
                 </div>
                 <div class="content">
-                  <a class="header" href="{{ url('videos/'.$video->id) }}">
+                  <a class="header" href="{{ resolve_url('videos/'.$video->id) }}">
                     {{ str_limit($video->title, 30) }}
                   </a>
                   <div class="description">
