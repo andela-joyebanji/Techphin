@@ -64,4 +64,14 @@ class Video extends Model
       $this->views++;
       $this->save();
     }
+
+    public function favouriters()
+    {
+        return $this->belongsToMany(User::class, 'favourites');
+    }
+
+    public function favourites()
+    {
+        return $this->favouriters()->count();
+    }
 }

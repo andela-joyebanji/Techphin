@@ -1,11 +1,26 @@
-@extends('layouts.page') @section('styles')
+@extends('layouts.page')
+@section('styles')
 <script type="text/javascript">
+  window.isLoggedIn = false;
   $(document).ready(function() {
+
+    $.fn.api.settings.api.favourite = "{{ resolve_url('/api/favourite/{videoId}') }}";
     $('.ui.embed').embed({
       parameters: {
         autoplay: true
       }
     });
+    $('#like .button').api({
+      action       : 'favourite',
+      urlData: {
+        videoId: {{ $video->id }}
+      },
+      onResponse : function(favouriteStateResponse) {
+        $('#like .label').text(('flash text', parseInt($('#like .label').text()) + parseInt(favouriteStateResponse.state)));
+        $('#like .button').find(".icon").toggleClass("red");
+      }
+    });
+
   });
 </script>
 <style media="screen">
@@ -49,12 +64,12 @@
                       <i class="icon unhide"></i> Views
                     </div>
                   </div>
-                  <div class="ui left labeled button" tabindex="0">
-                    <a class="ui basic right pointing label">
-                      0
+                  <div class="ui left labeled button" id="like" tabindex="0">
+                    <a class="ui basic right pointing label {{ $video->favourites() }} favourites">
+                      {{ $video->favourites() }}
                     </a>
-                    <div class="ui button">
-                      <i class="heart icon"></i>
+                    <div class="ui button @unless (auth()->user()) {{ "disabled" }} @endunless">
+                      <i class="heart icon @if (auth()->user() && auth()->user()->isFavourited($video->id)) {{ "red" }} @endif"></i>
                     </div>
                   </div>
               </div>
@@ -125,13 +140,4 @@
     </div>
   </div>
 </div>
-{{--
-<div class="ui column centered stackable grid">
-  <div class="column">
-    <div class="ui embed" data-source="youtube" data-id="{{ substr($video->link, 32) }}" data-icon="video"></div>
-  </div>
-  <div class="four column centered row">
-    <div class="column"></div>
-    <div class="column"></div>
-  </div>
-</div> --}} @endsection
+@endsection

@@ -16,6 +16,9 @@ class PagesController extends Controller
      */
     public function index()
     {
+        if(auth()->user()) {
+            return redirect("/videos");
+        }
       $videos = Video::popular()->get();
       $categories = Category::select(['id', 'name', 'icon'])->get();
       return view('welcome', compact('videos', 'categories'));
