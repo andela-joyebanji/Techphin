@@ -13,7 +13,8 @@
 
 Route::get('/', 'PagesController@index');
 Route::get('/videos', 'PagesController@videos');
-Route::get('/videos/{video}', 'PagesController@video')->middleware(['videoviews']);;
+Route::get('/videos/{video}', 'PagesController@video')->middleware(['videoviews']);
+Route::get('/videos/category/{category}', 'PagesController@categoryVideos');
 
 Route::auth();
 
