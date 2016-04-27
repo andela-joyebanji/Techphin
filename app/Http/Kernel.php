@@ -48,5 +48,7 @@ class Kernel extends HttpKernel
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'guest' => \Pyjac\Techphin\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+
+        'videoviews' => \Pyjac\Techphin\Http\Middleware\VideoViewsMiddleware::class,
     ];
 }

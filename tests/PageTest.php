@@ -24,6 +24,13 @@ class PageTest extends TestCase
              ->see($video->description);
     }
 
+    public function testVideoPageViews()
+    {
+      $video = factory(Pyjac\Techphin\Video::class)->create();
+      $this->visit('/videos/'.$video->id)
+             ->see(($video->views + 1)." views");
+    }
+
     public function testHomePage()
     {
       $this->visit('/')

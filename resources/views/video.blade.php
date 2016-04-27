@@ -35,32 +35,28 @@
         <div class="ui segment" style="margin-top: 1.5rem;">
           <h2 class="ui dividing header">{{ $video->title }}</h2>
           <div class="ui grid">
-            <div class="four column row">
+            <div class="two column row">
               <div class="left floated column">
-                <img class="ui middle aligned tiny image" src="http://semantic-ui.com/images/wireframe/square-image.png">
+                <img class="ui middle aligned tiny image" src="{{ $video->owner->image }}">
                 <span> {{ $video->owner->username }} </span>
               </div>
-              <div class="right floated column">
-                <div class="ui tiny statistic">
-                  <div class="value">
-                    2,204
+              <div class="right floated column" style="margin-top: 2em;">
+                  <div class="ui left labeled button" tabindex="0">
+                    <a class="ui basic right pointing label {{ $video->views }} views">
+                      {{ $video->views }}
+                    </a>
+                    <div class="ui button">
+                      <i class="icon unhide"></i> Views
+                    </div>
                   </div>
-                  <div class="label">
-                    Views
+                  <div class="ui left labeled button" tabindex="0">
+                    <a class="ui basic right pointing label">
+                      0
+                    </a>
+                    <div class="ui button">
+                      <i class="heart icon"></i>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="column">
-                <div class="ui left labeled button" tabindex="0">
-                  <a class="ui basic right pointing label">
-                    0
-                  </a>
-                  <div class="ui button">
-                    <i class="heart icon"></i> Like
-                  </div>
-                </div>
               </div>
             </div>
           </div>
@@ -69,8 +65,6 @@
             <p>
               {{ $video->description }}
             </p>
-
-
         </div>
 
         <div class="ui grid container">

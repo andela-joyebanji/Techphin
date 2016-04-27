@@ -58,4 +58,10 @@ class Video extends Model
     {
         return $query->with(['category','owner'])->take($limit);
     }
+
+    public function incrementViews()
+    {
+      $this->views++;
+      $this->save();
+    }
 }
