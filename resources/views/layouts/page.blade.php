@@ -29,7 +29,7 @@
     <div class="pusher">
         <div class="ui fixed top borderless menu" id="navBarContext">
             <div class="ui container">
-                <a class="item" id="logo-text" href="{{ url('/') }}">
+                <a class="item" id="logo-text" href="{{ resolve_url('/') }}">
                     <h1>Techphin</h1>
                 </a>
                 <div class="item" id="search">
@@ -41,7 +41,7 @@
 
                 <div class="right menu">
                     <div class="item">
-                        <a class="ui blue button" href="{{ url('/user/upload') }}">Upload </a>
+                        <a class="ui blue button" href="{{ resolve_url('/user/upload') }}">Upload </a>
                     </div>
                     @if (auth()->user())
                         <div class="ui dropdown pointing item" >
@@ -51,17 +51,17 @@
                             <div class="menu">
                               <div class="item">
                                   <i class="icon dashboard"></i>
-                                  <a href="{{ url('user/dashboard') }}">Dashboard</a>
+                                  <a href="{{ resolve_url('user/dashboard') }}">Dashboard</a>
                               </div>
                               <div class="item">
                                   <i class="icon sign out"></i>
-                                  <a href="{{ url('logout') }}">Logout</a>
+                                  <a href="{{ resolve_url('logout') }}">Logout</a>
                               </div>
                             </div>
                         </div>
                     @else
                         <div class="item">
-                            <a class="ui blue basic button" href="{{ url('/login') }}">Login </a>
+                            <a class="ui blue basic button" href="{{ resolve_url('/login') }}">Login </a>
                         </div>
                     @endif
                 </div>

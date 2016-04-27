@@ -18,7 +18,7 @@
       <div class="ui four stackable cards">
         @forelse ($videos as $video)
             <div class="card">
-              <a href="{{ url('videos/'.$video->id) }}" class="image">
+              <a href="{{ resolve_url('videos/'.$video->id) }}" class="image">
                 <div class="ui dimmer">
                   <div class="content">
                     <div class="center">
@@ -31,12 +31,12 @@
               </a>
               <div class="content">
                 <div class="header">
-                  <a href="{{ url('videos/'.$video->id) }}">
+                  <a href="{{ resolve_url('videos/'.$video->id) }}">
                     {{ str_limit($video->title, 70) }}
                   </a>
                 </div>
                 <div class="meta">
-                 by: <a href="{{ url('videos/user/'.$video->owner->username) }}">{{ str_limit(ucwords($video->owner->username), 20) }}</a>
+                 by: <a href="{{ resolve_url('videos/user/'.$video->owner->username) }}">{{ str_limit(ucwords($video->owner->username), 20) }}</a>
                 </div>
                 <span>
                   <i class="icon unhide"></i>{{ $video->views }} Views

@@ -48,7 +48,7 @@
           </a>
           <div class="right menu">
             <div class="item">
-                <a class="ui blue basic button" href="{{ url('/login') }}"> <i class="sign in icon"></i>Login </a>
+                <a class="ui blue basic button" href="{{ resolve_url('/login') }}"> <i class="sign in icon"></i>Login </a>
             </div>
           </div>
         </div>
@@ -68,7 +68,7 @@
       </div>
       <div class="column" id="sign-up-seg">
         <div class="ui form" id="sign-up-form">
-          <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
+          <form class="form-horizontal" role="form" method="POST" action="{{ resolve_url('/register') }}">
                         {!! csrf_field() !!}
             <div class="two fields">
               <div class="field {{ $errors->has('firstname') ? 'error' : '' }}">
@@ -104,15 +104,15 @@
               <i class="tag icon"></i>
               Register via Social
             </h4>
-            <a class="ui facebook button" href="{{ url('/auth/facebook') }}">
+            <a class="ui facebook button" href="{{ resolve_url('/auth/facebook') }}">
               <i class="facebook icon"></i>
               Facebook
             </a>
-            <a class="ui twitter button" href="{{ url('/auth/twitter') }}">
+            <a class="ui twitter button" href="{{ resolve_url('/auth/twitter') }}">
               <i class="twitter icon"></i>
               Twitter
             </a>
-            <a class="ui google plus button" href="{{ url('/auth/google') }}">
+            <a class="ui google plus button" href="{{ resolve_url('/auth/google') }}">
               <i class="google plus icon"></i>
               Google Plus
             </a>
@@ -134,7 +134,7 @@
             <div class="ui four stackable cards">
               @forelse ($videos as $video)
                   <div class="card">
-                    <a href="{{ url('videos/'.$video->id) }}" class="image">
+                    <a href="{{ resolve_url('videos/'.$video->id) }}" class="image">
                       <div class="ui dimmer">
                         <div class="content">
                           <div class="center">
@@ -147,12 +147,12 @@
                     </a>
                     <div class="content">
                       <div class="header">
-                        <a href="{{ url('videos/'.$video->id) }}">
+                        <a href="{{ resolve_url('videos/'.$video->id) }}">
                           {{ str_limit($video->title, 70) }}
                         </a>
                       </div>
                       <div class="meta">
-                        by: <a href="{{ url('videos/user/'.$video->owner->username) }}">{{ str_limit(ucwords($video->owner->username), 20) }}</a>
+                        by: <a href="{{ resolve_url('videos/user/'.$video->owner->username) }}">{{ str_limit(ucwords($video->owner->username), 20) }}</a>
                       </div>
                       <span>
                         <i class="icon unhide"></i>{{ $video->views }} Views
@@ -166,7 +166,7 @@
             <div class="ui middle aligned stackable grid container">
               <div class="row">
                 <div class="center aligned column">
-                  <a href="{{ url('/videos') }}" class="ui button">View more<i class="right arrow icon"></i></a>
+                  <a href="{{ resolve_url('/videos') }}" class="ui button">View more<i class="right arrow icon"></i></a>
 
                 </div>
               </div>

@@ -72,7 +72,7 @@
             <div class="column">
               <div class="ui tag labels">
                 @foreach ($video->tags as $tag)
-                    <a href="{{ url('videos/tags/'.$tag->id)}}" class="ui label">
+                    <a href="{{ resolve_url('videos/tags/'.$tag->id)}}" class="ui label">
                     {{ $tag->name }}
                     </a>
                 @endforeach
@@ -102,7 +102,7 @@
                     {{ str_limit($video->title, 30) }}
                   </a>
                   <div class="description">
-                    by: <a href="{{ url('videos/user/'.$video->owner->id) }}">
+                    by: <a href="{{ resolve_url('videos/user/'.$video->owner->id) }}">
                       {{ str_limit($video->owner->username, 30) }}
                     </a>
                   </div>
@@ -116,7 +116,7 @@
                 </div>
               </div>
             @empty
-                <p> :( No related.</p>
+                <p> :( No related Video.</p>
             @endforelse
           </div>
         </div>
