@@ -36,7 +36,8 @@ class SocialAccountService
                     'lastname' => $lastname,
                     'image' => $providerUser->getAvatar(),
                     'username' => strtolower($firstname).'.'.time(),
-                    'password' => ""
+                    'password' => "",
+                    'role' => 'user'
                 ]);
             }
 
