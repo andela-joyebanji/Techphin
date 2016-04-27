@@ -34,6 +34,16 @@ class UserDashboardController extends Controller
     }
 
     /**
+     * Show user uploaded videos page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function uploaded()
+    {
+        return view('user.uploaded');
+    }
+
+    /**
      * Upload the video.
      *
      * @return \Illuminate\Http\Response

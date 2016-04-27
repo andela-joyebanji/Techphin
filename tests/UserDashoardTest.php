@@ -7,15 +7,6 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 class UserDashoardTest extends TestCase
 {
     use DatabaseTransactions;
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testExample()
-    {
-        $this->assertTrue(true);
-    }
 
     public function testVideoUploadWhenAllFieldsArePassedCorrectly()
     {
@@ -47,6 +38,31 @@ class UserDashoardTest extends TestCase
              ->type($category->id, 'category_id')
              ->press('Upload')
              ->see('The link format is invalid.');
+    }
+
+    public function testVideoUploadedNoVideos()
+    {
+        $user = factory(Pyjac\Techphin\User::class)->create();
+
+        $this->actingAs($user)
+             ->visit('/user/uploaded')
+             ->see(':( No videos uploaded yet.');
+    }
+
+    public function testVideoUploaded()
+    {
+        $user = factory(Pyjac\Techphin\User::class)->create();
+        $category = factory(Pyjac\Techphin\Category::class)->create();
+        $this->actingAs($user)
+              ->visit('/user/upload')
+              ->type('PHP Programming', 'title')
+              ->type('https://www.youtube.com/watch?v=7TF00hJI78Y', 'link')
+              ->type('PHP Programming', 'description')
+              ->type('php,programming', 'tags')
+              ->type($category->id, 'category_id')
+              ->press('Upload')
+             ->visit('/user/uploaded')
+             ->see($user->videos()->first()->title);
     }
 
     public function testVideoUploadFailWhenTitleIsEmpty()
