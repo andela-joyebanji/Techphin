@@ -45,6 +45,15 @@ class PageTest extends TestCase
              ->see("Videos in Category : ".$category->name);
     }
 
+    public function testUserVideos()
+    {
+      $user = factory(Pyjac\Techphin\User::class)->create();
+      $video = factory(Pyjac\Techphin\Video::class)->create();
+      $user->videos()->save($video);
+      $this->visit('/videos/user/'.$user->username)
+             ->see(str_limit($video->title, 70));
+    }
+
     public function testHomePage()
     {
       $this->visit('/')
