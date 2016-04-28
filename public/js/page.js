@@ -6,6 +6,9 @@ $(document)
             on: 'hover'
         });
 
+        $(".search.link.icon").click(function(){
+          $('#search').submit();
+        });
         $('#search').form({
           fields: {
             queryString: {
