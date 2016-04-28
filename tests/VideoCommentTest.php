@@ -9,6 +9,9 @@ use Pyjac\Techphin\Category;
 
 class VideoComment extends TestCase
 {
+
+  use DatabaseTransactions;
+
   public function testVideoPageLoggedInUserWithNoComment()
   {
     $video = factory(Pyjac\Techphin\Video::class)->create();

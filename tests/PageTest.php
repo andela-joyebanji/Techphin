@@ -45,6 +45,13 @@ class PageTest extends TestCase
              ->see("Videos in Category : ".$category->name);
     }
 
+     public function testTagVideos()
+    {
+      $tag = factory(Pyjac\Techphin\Tag::class)->create();
+      $this->visit('/videos/tag/'.$tag->name)
+             ->see("Videos in Tag : ".$tag->name);
+    }
+
     public function testUserVideos()
     {
       $user = factory(Pyjac\Techphin\User::class)->create();
