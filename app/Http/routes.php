@@ -27,6 +27,10 @@ Route::get('auth/{provider}', [
 ]);
 Route::get('auth/{provider}/callback', 'Auth\SocialAuthController@handleProviderCallback');
 
+Route::group(['prefix' => 'api', 'middleware' => 'auth'], function () {
+  Route::get('/favourite/{video}', 'ApiController@favourite');
+});
+
 /**
  * User Dashboard routes
  */
