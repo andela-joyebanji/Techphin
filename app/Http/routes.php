@@ -17,6 +17,8 @@ Route::get('/videos/{video}', 'PagesController@video')->middleware(['videoviews'
 Route::get('/videos/category/{category}', 'PagesController@categoryVideos');
 Route::get('/videos/user/{user}', 'PagesController@userVideos');
 
+Route::post('/videos/{video}/comment', 'PagesController@commentVideo')->middleware(['auth']);
+
 Route::auth();
 
 /*
