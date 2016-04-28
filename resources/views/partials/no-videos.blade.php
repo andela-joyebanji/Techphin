@@ -1,1 +1,1 @@
-<div class="ui message column"> :( No videos uploaded yet.</div>
+<div class="ui message column"> :( No videos here yet.</div>

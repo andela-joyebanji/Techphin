@@ -46,7 +46,26 @@ class UserDashoardTest extends TestCase
 
         $this->actingAs($user)
              ->visit('/user/uploaded')
-             ->see(':( No videos uploaded yet.');
+             ->see(':( No videos here yet.');
+    }
+
+    public function testVideoFavouritedNoVideos()
+    {
+        $user = factory(Pyjac\Techphin\User::class)->create();
+
+        $this->actingAs($user)
+             ->visit('/user/favourited')
+             ->see(':( No videos here yet.');
+    }
+
+    public function testVideoFavourited()
+    {
+        $user = factory(Pyjac\Techphin\User::class)->create();
+        $video = factory(Pyjac\Techphin\Video::class)->create();
+        $user->favourites()->attach($video->id);
+        $this->actingAs($user)
+             ->visit('/user/favourited')
+             ->see(str_limit($video->title, 70));
     }
 
     public function testVideoUploaded()
