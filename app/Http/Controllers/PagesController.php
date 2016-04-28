@@ -3,10 +3,12 @@
 namespace Pyjac\Techphin\Http\Controllers;
 
 use Pyjac\Techphin\Video;
+use Pyjac\Techphin\Comment;
 use Pyjac\Techphin\User;
 use Pyjac\Techphin\Category;
 use Pyjac\Techphin\Http\Requests;
 use Illuminate\Http\Request;
+use Pyjac\Techphin\Http\Requests\CommentRequest;
 
 class PagesController extends Controller
 {
@@ -45,7 +47,8 @@ class PagesController extends Controller
     public function video(Video $video)
     {
       $relatedVideos = $video->relatedVideos();
-      return view('video', compact('video', 'relatedVideos'));
+      $comments = $video->comments()->get();
+      return view('video', compact('video', 'relatedVideos', 'comments'));
     }
 
     /**
@@ -59,6 +62,23 @@ class PagesController extends Controller
       $categories = Category::select(['id', 'name', 'icon'])->get();
       return view('category_videos', compact('category', 'videos', 'categories'));
     }
+
+    /**
+     * Comment on a video.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function commentVideo(CommentRequest $request, Video $video)
+    {
+        $comment = new Comment(
+                    [
+                        'body' => $request->get('body'),
+                        'user_id'     => auth()->user()->id
+                    ]);
+        $comment = $video->comments()->save($comment);
+        return redirect()->back();
+    }
+
 
     /**
      * Show user videos list.
