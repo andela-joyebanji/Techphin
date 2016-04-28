@@ -3,6 +3,7 @@
 namespace Pyjac\Techphin\Http\Controllers;
 
 use Pyjac\Techphin\Video;
+use Pyjac\Techphin\User;
 use Pyjac\Techphin\Category;
 use Pyjac\Techphin\Http\Requests;
 use Illuminate\Http\Request;
@@ -57,5 +58,17 @@ class PagesController extends Controller
       $videos = $category->videos()->get();
       $categories = Category::select(['id', 'name', 'icon'])->get();
       return view('category_videos', compact('category', 'videos', 'categories'));
+    }
+
+    /**
+     * Show user videos list.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function userVideos(User $user)
+    {
+      $videos = $user->videos()->get();
+      $categories = Category::select(['id', 'name', 'icon'])->get();
+      return view('user_videos', compact('user', 'videos', 'categories'));
     }
 }
