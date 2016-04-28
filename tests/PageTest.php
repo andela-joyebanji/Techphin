@@ -61,6 +61,15 @@ class PageTest extends TestCase
            ->visit('/')
            ->seePageIs('/videos');
     }
+
+    public function testAuthorizedUserRedirectFromLogin()
+    {
+      $user = factory(Pyjac\Techphin\User::class)->create();
+      $this->actingAs($user)
+           ->visit('/login')
+           ->seePageIs('/videos');
+    }
+
     public function testHomePage()
     {
       $this->visit('/')

@@ -111,6 +111,9 @@ class UserDashoardTest extends TestCase
         $this->visit('/user/dashboard')
              ->seePageIs('/login');
 
+        $this->json('POST', '/user/upload')
+             ->see('Unauthorized.');
+
         $response = $this->call('POST', '/user/upload', []);
         $this->assertRedirectedTo('/login');
 
