@@ -8,6 +8,12 @@ class UserDashoardTest extends TestCase
 {
     use DatabaseTransactions;
 
+    public function testHomePage()
+    {
+        $user = factory(Pyjac\Techphin\User::class)->create();
+        $this->actingAs($user)->visit('/user/dashboard')
+             ->see("Dashboard");
+    }
     public function testVideoUploadWhenAllFieldsArePassedCorrectly()
     {
         $user = factory(Pyjac\Techphin\User::class)->create();

@@ -103,7 +103,7 @@
             <div class="field {{ $errors->has('email') ? 'error' : '' }}">
               <div class="ui left icon input">
                 <i class="user icon"></i>
-                <input type="text" name="email" placeholder="E-mail address">
+                <input type="text" name="email" value="{{ old('email') }}" placeholder="E-mail address">
               </div>
             </div>
             <div class="field {{ $errors->has('password') ? 'error' : '' }}">
@@ -112,7 +112,7 @@
                 <input type="password" name="password" placeholder="Password">
               </div>
             </div>
-            <div class="ui fluid large primary submit button">Login</div>
+            <button class="ui fluid large primary submit button">Login</button>
         </form>
       </div>
       <div id="social" class="ui center aligned basic segment">

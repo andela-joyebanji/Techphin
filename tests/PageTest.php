@@ -54,6 +54,13 @@ class PageTest extends TestCase
              ->see(str_limit($video->title, 70));
     }
 
+    public function testAuthorizedUserRedirectToVideos()
+    {
+      $user = factory(Pyjac\Techphin\User::class)->create();
+      $this->actingAs($user)
+           ->visit('/')
+           ->seePageIs('/videos');
+    }
     public function testHomePage()
     {
       $this->visit('/')
