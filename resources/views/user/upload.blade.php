@@ -34,7 +34,7 @@
   @if(Session::has('success'))
     <div class="ui success message visible">
         <div class="header">Success</div>
-        <p>{{ Session::get('success') }}</p>
+        <p>{!! Session::get('success') !!}</p>
     </div>
   @endif
   <div class="field {{ $errors->has('title') ? 'error' : '' }}">
@@ -56,7 +56,7 @@
   <div class="field {{ $errors->has('description') ? 'error' : '' }}">
     <textarea name="description" placeholder="Description of the video">{{ old('description') }}</textarea>
   </div>
-  <div class="field {{ $errors->has('category') ? 'error' : '' }}" id="category-field">
+  <div class="field {{ $errors->has('category_id') ? 'error' : '' }}" id="category-field">
     <div class="ui fluid selection dropdown">
       <input type="hidden" name="category_id" value="{{ old('category_id') }}">
       <i class="dropdown icon"></i>
