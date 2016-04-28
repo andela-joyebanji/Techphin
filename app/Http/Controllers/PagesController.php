@@ -3,6 +3,7 @@
 namespace Pyjac\Techphin\Http\Controllers;
 
 use Pyjac\Techphin\Video;
+use Pyjac\Techphin\Tag;
 use Pyjac\Techphin\Comment;
 use Pyjac\Techphin\User;
 use Pyjac\Techphin\Category;
@@ -61,6 +62,18 @@ class PagesController extends Controller
       $videos = $category->videos()->get();
       $categories = Category::select(['id', 'name', 'icon'])->get();
       return view('category_videos', compact('category', 'videos', 'categories'));
+    }
+
+    /**
+     * Show videos list.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function tagVideos(Tag $tag)
+    {
+      $videos = $tag->videos()->get();
+      $categories = Category::select(['id', 'name', 'icon'])->get();
+      return view('tag_videos', compact('tag', 'videos', 'categories'));
     }
 
     /**

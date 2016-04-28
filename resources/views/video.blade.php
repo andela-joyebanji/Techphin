@@ -74,7 +74,7 @@
                       {{ $video->views }}
                     </a>
                     <div class="ui button">
-                      <i class="icon unhide"></i> Views
+                      <i class="icon unhide"></i> views
                     </div>
                   </div>
                   <div class="ui left labeled button" id="like" tabindex="0">
@@ -100,7 +100,7 @@
             <div class="column">
               <div class="ui tag labels">
                 @foreach ($video->tags as $tag)
-                    <a href="{{ resolve_url('videos/tags/'.$tag->id)}}" class="ui label">
+                    <a href="{{ resolve_url('videos/tag/'.$tag->name)}}" class="ui label">
                     {{ $tag->name }}
                     </a>
                 @endforeach
