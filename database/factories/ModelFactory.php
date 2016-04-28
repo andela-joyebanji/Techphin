@@ -46,3 +46,14 @@ $factory->define(Pyjac\Techphin\Video::class, function (Faker\Generator $faker) 
         'category_id' => factory(Pyjac\Techphin\Category::class)->create()->id
     ];
 });
+
+$factory->define(Pyjac\Techphin\SocialAccount::class, function (Faker\Generator $faker) {
+
+    return [
+            'provider_user_id' => $faker->ean8,
+            'provider' => $faker->firstName,
+            'user_id' => function () {
+                return factory(Pyjac\Techphin\User::class)->create()->id;
+            }
+        ];
+});
