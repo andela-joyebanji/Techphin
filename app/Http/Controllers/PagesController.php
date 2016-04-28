@@ -10,6 +10,7 @@ use Pyjac\Techphin\Category;
 use Pyjac\Techphin\Http\Requests;
 use Illuminate\Http\Request;
 use Pyjac\Techphin\Http\Requests\CommentRequest;
+use Pyjac\Techphin\Http\Requests\SearchRequest;
 
 class PagesController extends Controller
 {
@@ -62,6 +63,19 @@ class PagesController extends Controller
       $videos = $category->videos()->get();
       $categories = Category::select(['id', 'name', 'icon'])->get();
       return view('category_videos', compact('category', 'videos', 'categories'));
+    }
+
+    /**
+     * Search videos.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function videosSearch(SearchRequest $request)
+    {
+      $queryString = $request->get("queryString");
+      $videos = Video::search($queryString)->get();
+      $categories = Category::select(['id', 'name', 'icon'])->get();
+      return view('search_videos', compact('queryString', 'videos', 'categories'));
     }
 
     /**
