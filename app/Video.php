@@ -29,6 +29,16 @@ class Video extends Model
     }
 
     /**
+     * Get the comments the video has.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function comments()
+    {
+      return $this->hasMany(Comment::class);
+    }
+
+    /**
      * Get the keywords associated with the emoji.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

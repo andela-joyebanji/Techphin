@@ -45,6 +45,38 @@ class PageTest extends TestCase
              ->see("Videos in Category : ".$category->name);
     }
 
+     public function testTagVideos()
+    {
+      $tag = factory(Pyjac\Techphin\Tag::class)->create();
+      $this->visit('/videos/tag/'.$tag->name)
+             ->see("Videos in Tag : ".$tag->name);
+    }
+
+    public function testUserVideos()
+    {
+      $user = factory(Pyjac\Techphin\User::class)->create();
+      $video = factory(Pyjac\Techphin\Video::class)->create();
+      $user->videos()->save($video);
+      $this->visit('/videos/user/'.$user->username)
+             ->see(str_limit($video->title, 70));
+    }
+
+    public function testAuthorizedUserRedirectToVideos()
+    {
+      $user = factory(Pyjac\Techphin\User::class)->create();
+      $this->actingAs($user)
+           ->visit('/')
+           ->seePageIs('/videos');
+    }
+
+    public function testAuthorizedUserRedirectFromLogin()
+    {
+      $user = factory(Pyjac\Techphin\User::class)->create();
+      $this->actingAs($user)
+           ->visit('/login')
+           ->seePageIs('/videos');
+    }
+
     public function testHomePage()
     {
       $this->visit('/')

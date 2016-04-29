@@ -20,7 +20,7 @@
      by: <a href="{{ url('videos/user/'.$video->owner->username) }}">{{ str_limit(ucwords($video->owner->username), 20) }}</a>
     </div>
     <span>
-      <i class="icon unhide"></i>{{ $video->views }} Views
+      <i class="icon unhide"></i> {{ $video->views }} views
     </span>
   </div>
 </div>

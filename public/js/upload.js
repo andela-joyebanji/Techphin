@@ -1,6 +1,6 @@
 $(document)
 .ready(function() {
-  $('#uplod')
+  $('#upload')
   .form({
     fields: {
       title: {
@@ -36,16 +36,14 @@ $(document)
       }
     },
     category: {
-      identifier  : 'category',
+      identifier  : 'category_id',
       rules: [
         {
           type   : 'empty',
-          prompt : 'Please enter a category'
+          prompt : 'Please select a category'
         }
       ]
-    },
-    inline : true,
-    on     : 'blur'
+    }
   });
 
   $('#tag .ui.dropdown')

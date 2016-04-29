@@ -8,6 +8,12 @@ class UserDashoardTest extends TestCase
 {
     use DatabaseTransactions;
 
+    public function testHomePage()
+    {
+        $user = factory(Pyjac\Techphin\User::class)->create();
+        $this->actingAs($user)->visit('/user/dashboard')
+             ->see("Dashboard");
+    }
     public function testVideoUploadWhenAllFieldsArePassedCorrectly()
     {
         $user = factory(Pyjac\Techphin\User::class)->create();
@@ -123,6 +129,9 @@ class UserDashoardTest extends TestCase
 
         $this->visit('/user/dashboard')
              ->seePageIs('/login');
+
+        $this->json('POST', '/user/upload')
+             ->see('Unauthorized.');
 
         $response = $this->call('POST', '/user/upload', []);
         $this->assertRedirectedTo('/login');

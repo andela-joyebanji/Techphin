@@ -1,7 +1,6 @@
 @extends('layouts.page')
 @section('styles')
 <script type="text/javascript">
-  window.isLoggedIn = false;
   $(document).ready(function() {
 
     $.fn.api.settings.api.favourite = "{{ resolve_url('/api/favourite/{videoId}') }}";
@@ -21,6 +20,20 @@
       }
     });
 
+    $('#commentForm')
+      .form({
+        fields: {
+          body: {
+            identifier  : 'body',
+            rules: [
+            {
+              type   : 'empty',
+              prompt : 'Please enter your comment'
+            }
+            ]
+          },
+        },
+      });
   });
 </script>
 <style media="screen">
@@ -61,7 +74,7 @@
                       {{ $video->views }}
                     </a>
                     <div class="ui button">
-                      <i class="icon unhide"></i> Views
+                      <i class="icon unhide"></i> views
                     </div>
                   </div>
                   <div class="ui left labeled button" id="like" tabindex="0">
@@ -87,7 +100,7 @@
             <div class="column">
               <div class="ui tag labels">
                 @foreach ($video->tags as $tag)
-                    <a href="{{ resolve_url('videos/tags/'.$tag->id)}}" class="ui label">
+                    <a href="{{ resolve_url('videos/tag/'.$tag->name)}}" class="ui label">
                     {{ $tag->name }}
                     </a>
                 @endforeach
@@ -95,7 +108,50 @@
             </div>
           </div>
         </div>
+        <div class="ui segment">
+          <div class="ui comments">
+            @if(count($comments) > 0)
+              <h3 class="ui dividing header">Comments</h3>
+            @else
+              @if(auth()->user())
+                <h3 class="ui dividing header">Add a Comment</h3>
+              @else
+                <h3 class="ui header">No Comments on this video yet.</h3>
+              @endif
+            @endif
 
+            @foreach ($comments as $comment)
+              <div class="comment">
+                <a class="avatar">
+                  <img src="{{ $comment->author->image }}">
+                </a>
+                <div class="content">
+                  <a class="author">{{ $comment->author->firstname }} {{ $comment->author->lastname }}</a>
+                  <div class="metadata">
+                    <span class="date">
+                    {{ (new \Carbon\Carbon($comment->created_at))->diffForHumans() }}
+                    </span>
+                  </div>
+                  <div class="text">
+                    {{ $comment->body }}
+                  </div>
+                </div>
+              </div>
+            @endforeach
+            @if(auth()->user())
+              <form class="ui reply form" id="commentForm" method="POST" action="{{ resolve_url('/videos/'.$video->id.'/comment')}}">
+                @include('partials/form-error')
+                 {!! csrf_field() !!}
+                <div class="field">
+                  <textarea name="body"></textarea>
+                </div>
+                <button class="ui blue labeled submit icon button">
+                  <i class="icon edit"></i> Add Comment
+                </button>
+              </form>
+            @endif
+          </div>
+        </div>
         <div class="row">
           <div class="sixteen wide column">
           </div>
