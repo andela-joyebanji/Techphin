@@ -33,6 +33,7 @@ Route::get('auth/{provider}/callback', 'Auth\SocialAuthController@handleProvider
 
 Route::group(['prefix' => 'api', 'middleware' => 'auth'], function () {
   Route::get('/favourite/{video}', 'ApiController@favourite');
+  Route::get('/videos/{video}/delete', 'ApiController@deleteVideo');
 });
 
 /**
