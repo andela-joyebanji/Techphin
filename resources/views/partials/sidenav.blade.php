@@ -2,6 +2,9 @@
   <a class="item" href="{{ resolve_url('user/dashboard') }}">
     <i class="icon dashboard"></i>Dashboard
   </a>
+  <a class="item" href="{{ resolve_url('user/profile') }}">
+    Profile <i class="icon cloud upload"></i>
+  </a>
   <a class="item" href="{{ resolve_url('user/uploaded') }}">
     Uploaded Videos <i class="icon cloud upload"></i>
   </a>

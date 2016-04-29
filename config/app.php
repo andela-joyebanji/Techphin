@@ -156,6 +156,7 @@ return [
         Pyjac\Techphin\Providers\AuthServiceProvider::class,
         Pyjac\Techphin\Providers\EventServiceProvider::class,
         Pyjac\Techphin\Providers\RouteServiceProvider::class,
+        'JD\Cloudder\CloudderServiceProvider',
 
     ],
 
@@ -203,6 +204,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Cloudder' => 'JD\Cloudder\Facades\Cloudder',
 
     ],
 

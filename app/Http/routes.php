@@ -45,4 +45,6 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::post('/upload', 'UserDashboardController@storeVideo');
     Route::get('/uploaded', 'UserDashboardController@uploaded');
     Route::get('/favourited', 'UserDashboardController@favourited');
+    Route::get('/profile', 'UserDashboardController@profile');
+    Route::post('/profile', 'UserDashboardController@updateProfile');
 });

@@ -122,6 +122,26 @@ class UserDashoardTest extends TestCase
              ->see('The category id field is required.');
     }
 
+    public function testUpdateProfile()
+    {
+        $user = factory(Pyjac\Techphin\User::class)->create();
+        $this->actingAs($user)
+             ->visit('/user/profile')
+             ->type('taju', 'firstname')
+             ->press('Update Profile')
+             ->see('Profile Updated');
+    }
+
+    public function testUpdateProfileUploadFile()
+    {
+        $user = factory(Pyjac\Techphin\User::class)->create();
+        $this->actingAs($user)
+             ->visit('/user/profile')
+             ->attach(storage_path('Python.jpg'), 'image')
+             ->press('Update Profile')
+             ->see('Profile Updated');
+    }
+
     public function testUnAuthorizedUserRedirectToLogin()
     {
         $this->visit('/user/upload')
