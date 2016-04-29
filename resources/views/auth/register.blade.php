@@ -105,9 +105,9 @@
           <i class="twitter icon"></i>
           Twitter
         </a>
-        <a class="ui google plus button" href="{{ url('/auth/google') }}">
-          <i class="google plus icon"></i>
-          Google Plus
+        <a class="ui black button" href="{{ resolve_url('/auth/github') }}">
+          <i class="github icon"></i>
+          Github
         </a>
     </div>
   </div>

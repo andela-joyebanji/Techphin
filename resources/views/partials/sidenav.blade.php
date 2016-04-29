@@ -16,7 +16,7 @@
     Commented Videos <i class="icon comments outline"></i>
   </a>
   -->
-  <a class="item" href="{{ url('/logout') }}">
+  <a class="item" href="{{ resolve_url('/logout') }}">
     Logout
   </a>
 </div>
