@@ -44,6 +44,16 @@ class UserDashboardController extends Controller
     }
 
     /**
+     * Show user favourited videos page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function favourited()
+    {
+        return view('user.favourited');
+    }
+
+    /**
      * Upload the video.
      *
      * @return \Illuminate\Http\Response

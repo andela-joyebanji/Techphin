@@ -1,11 +1,11 @@
 <div class="ui vertical menu left" style="width: 18rem;">
-  <a class="item" href="{{ url('user/dashboard') }}">
+  <a class="item" href="{{ resolve_url('user/dashboard') }}">
     <i class="icon dashboard"></i>Dashboard
   </a>
-  <a class="item" href="{{ url('user/uploaded') }}">
+  <a class="item" href="{{ resolve_url('user/uploaded') }}">
     Uploaded Videos <i class="icon cloud upload"></i>
   </a>
-  <a class="item">
+  <a class="item" href="{{ resolve_url('user/favourited') }}">
     Favourited Videos <i class="icon heart"></i>
   </a>
   <a class="item">
