@@ -1,27 +1,138 @@
-# Laravel PHP Framework
+# Techphin 
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+[![Build Status](https://travis-ci.org/andela-joyebanji/Techphin.svg?branch=develop)](https://travis-ci.org/andela-joyebanji/Techphin)
+ [![Coverage Status](https://coveralls.io/repos/github/andela-joyebanji/Techphin/badge.svg?branch=develop)](https://coveralls.io/github/andela-joyebanji/Techphin?branch=develop)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/andela-joyebanji/OpenSourceEvangelist/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/andela-joyebanji/OpenSourceEvangelist/?branch=develop)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+[Techphin](https://techphin.herokuapp.com) is a learning platform that is open to people interested in the latest technologies online (Youtube hosted videos).
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+To share content you can conveniently register with your favourite social network [Facebook, Github or Twitter]. Non-
+registered users can also use the site without much restrictions.
 
-## Official Documentation
+##Features
+- Login and registration
+- Viewing videos by Category
+- Sharing videos
+  - Creating new video
+  - Update of videos
+  - Delete video
+- Profile View
+- Profile Update
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
 
-## Contributing
+##Installation
+It is recommended that you have the following set up on your local environment before getting started
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+1. [Composer](https://getcomposer.org)
+2. [Laravel] (https://laravel.com)
+3. [Vagrant] (https://www.vagrantup.com) 
+4. [Postgres](http://www.postgresql.org)
+5. [Git] (https://git-scm.com)
 
-## Security Vulnerabilities
+You can install the application by forking this repo or cloning it to your desktop. 
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+```bash
+$ git clone git@github.com:andela-joyebanji/Techphin.git
+```
+
+Change your directory into `techphin`
+
+```bash
+$ cd techphin
+```
+
+After cloning the application
+you have to set your environments variables, the required ones for the application are below:
+
+```bash
+APP_ENV=local
+APP_DEBUG=true
+APP_KEY=
+APP_URL=
+
+DB_HOST=
+DB_PORT=5432
+DB_DATABASE=
+DB_USERNAME=
+DB_PASSWORD=
+
+CACHE_DRIVER=
+SESSION_DRIVER=
+QUEUE_DRIVER=
+
+REDIS_HOST=
+REDIS_PASSWORD=
+REDIS_PORT=
+
+MAIL_DRIVER=
+MAIL_HOST=
+MAIL_PORT=
+MAIL_USERNAME=
+MAIL_PASSWORD=
+MAIL_ENCRYPTION=
+
+GITHUB_APP_ID=
+GITHUB_APP_SECRET=
+GITHUB_CALLBACK_URL=
+
+FACEBOOK_ID=
+FACEBOOK_SECRET=
+FACEBOOK_URL=
+
+TWITTER_ID=
+TWITTER_SECRET=
+TWITTER_URL=
+
+CLOUDINARY_API_KEY=
+CLOUDINARY_API_SECRET=
+CLOUDINARY_CLOUD_NAME=
+```
+Run Composer install to install the vendor packages
+
+```bash
+$ composer install
+```
+
+Run Migration:
+
+```artisan
+    php artisan migrate --seed
+```
+
+Boot-up the app with 
+
+```bash
+$ php artisan serve
+```
+
+## Security
+
+If you discover any security related issues, please email [Oyebanji Jacob](oyebanji.jacob@andela.com) or create an issue.
+
+## Credits
+
+[Oyebanji Jacob](https://github.com/andela-joyebanji)
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+### The MIT License (MIT)
+
+Copyright (c) 2016 Oyebanji Jacob <oyebanji.jacob@andela.com>
+
+> Permission is hereby granted, free of charge, to any person obtaining a copy
+> of this software and associated documentation files (the "Software"), to deal
+> in the Software without restriction, including without limitation the rights
+> to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+> copies of the Software, and to permit persons to whom the Software is
+> furnished to do so, subject to the following conditions:
+>
+> The above copyright notice and this permission notice shall be included in
+> all copies or substantial portions of the Software.
+>
+> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+> IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+> FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+> AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+> LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+> OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+> THE SOFTWARE.
