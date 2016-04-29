@@ -13,7 +13,7 @@
   </div>
   <div class="statistic">
     <div class="value">
-      <i class="icon unhide"></i> {{ auth()->user()->videosViewCount() }}
+      <i class="icon unhide"></i> {!! auth()->user()->videosViewCount() !!}
     </div>
     <div class="label">
       Views

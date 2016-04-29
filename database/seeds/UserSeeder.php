@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
             'firstname' => 'Oyebanji',
             'lastname'  => 'Jacob',
             'username'  => 'pyjac',
-            'email'     =>  'oyebanji.jacob@andela.com',
+            'email'     =>  'oyebanji@andela.com',
             'password'  => bcrypt('jacobu'),
             'role'      => 'user',
             'image'     => asset('img/profile-placeholder.png')
