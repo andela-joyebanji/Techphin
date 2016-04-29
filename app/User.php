@@ -31,7 +31,10 @@ class User extends Authenticatable
 
     public function scopeVideosViewCount()
     {
-        return $this->videos()->sum('views');
+        $views = $this->videos()->sum('views');
+
+        if($views == 0) return " 0 ";
+        return $views;
     }
 
     public function scopeVideosCommentCount()

@@ -17,36 +17,41 @@ class SocialAccountService
 
         if ($account) {
             return $account->user;
-        } else {
+        }
+        $account = new SocialAccount([
+            'provider_user_id' => $providerUser->getId(),
+            'provider' => $providerName
+        ]);
 
-            $account = new SocialAccount([
-                'provider_user_id' => $providerUser->getId(),
-                'provider' => $providerName
-            ]);
+        $user = User::whereEmail($providerUser->getEmail())->first();
 
-            $user = User::whereEmail($providerUser->getEmail())->first();
-
-            if (!$user) {
-                $name = explode(" ", $providerUser->getName());
-                $firstname = $name[0];
-                $lastname = implode(" ", array_slice($name, 1));
-                $user = User::create([
-                    'email' => $providerUser->getEmail(),
-                    'firstname' => $firstname,
-                    'lastname' => $lastname,
-                    'image' => $providerUser->getAvatar(),
-                    'username' => strtolower($firstname).'.'.time(),
-                    'password' => "",
-                    'role' => 'user'
-                ]);
-            }
-
-            $account->user()->associate($user);
-            $account->save();
-
-            return $user;
-
+        if (!$user) {
+            $user = $this->createUser($providerName, $providerUser);
         }
 
+        $account->user()->associate($user);
+        $account->save();
+
+        return $user;
+    }
+
+    public function createUser($providerName, $providerUser)
+    {
+        $name = explode(" ", $providerUser->getName());
+        $firstname = $name[0];
+        $lastname = implode(" ", array_slice($name, 1));
+        $avatar = $providerUser->getAvatar();
+        if (strpos(strtolower($providerName), 'github') !== false) {
+            $avatar = $providerUser->avatar;
+        }
+        return User::create([
+            'email' => $providerUser->getEmail(),
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'image' => $avatar,
+            'username' => strtolower($firstname).'.'.time(),
+            'password' => "",
+            'role' => 'user'
+        ]);
     }
 }
