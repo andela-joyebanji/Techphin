@@ -23,14 +23,21 @@ class SocialAccountService
             'provider' => $providerName
         ]);
 
+        $user = $this->resolveUser($providerName, $providerUser);
+
+        $account->user()->associate($user);
+        $account->save();
+
+        return $user;
+    }
+
+    private function resolveUser($providerName, $providerUser)
+    {
         $user = User::whereEmail($providerUser->getEmail())->first();
 
         if (!$user) {
             $user = $this->createUser($providerName, $providerUser);
         }
-
-        $account->user()->associate($user);
-        $account->save();
 
         return $user;
     }
