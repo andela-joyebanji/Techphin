@@ -3,7 +3,7 @@
     <i class="icon dashboard"></i>Dashboard
   </a>
   <a class="item" href="{{ resolve_url('user/profile') }}">
-    Profile <i class="icon cloud upload"></i>
+    Profile <i class="icon user upload"></i>
   </a>
   <a class="item" href="{{ resolve_url('user/uploaded') }}">
     Uploaded Videos <i class="icon cloud upload"></i>
@@ -11,9 +11,11 @@
   <a class="item" href="{{ resolve_url('user/favourited') }}">
     Favourited Videos <i class="icon heart"></i>
   </a>
+  <!--
   <a class="item">
     Commented Videos <i class="icon comments outline"></i>
   </a>
+  -->
   <a class="item" href="{{ url('/logout') }}">
     Logout
   </a>

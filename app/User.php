@@ -29,6 +29,16 @@ class User extends Authenticatable
         return $this->hasMany(Video::class);
     }
 
+    public function scopeVideosViewCount()
+    {
+        return $this->videos()->sum('views');
+    }
+
+    public function scopeVideosCommentCount()
+    {
+        return $this->videos()->rightJoin('comments','comments.video_id','=','videos.id');
+    }
+
     public function favourites()
     {
         return $this->belongsToMany(Video::class, 'favourites');
