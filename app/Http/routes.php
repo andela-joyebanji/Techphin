@@ -34,6 +34,7 @@ Route::get('auth/{provider}/callback', 'Auth\SocialAuthController@handleProvider
 
 Route::group(['prefix' => 'api', 'middleware' => 'auth'], function () {
   Route::get('/favourite/{video}', 'ApiController@favourite');
+  Route::get('/videos/{video}/delete', 'ApiController@deleteVideo');
 });
 
 /**
@@ -45,4 +46,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {
     Route::get('/upload', 'UserDashboardController@upload');
     Route::post('/upload', 'UserDashboardController@storeVideo');
     Route::get('/uploaded', 'UserDashboardController@uploaded');
+    Route::get('/favourited', 'UserDashboardController@favourited');
+    Route::get('/profile', 'UserDashboardController@profile');
+    Route::post('/profile', 'UserDashboardController@updateProfile');
 });

@@ -52,7 +52,26 @@ class UserDashoardTest extends TestCase
 
         $this->actingAs($user)
              ->visit('/user/uploaded')
-             ->see(':( No videos uploaded yet.');
+             ->see(':( No videos here yet.');
+    }
+
+    public function testVideoFavouritedNoVideos()
+    {
+        $user = factory(Pyjac\Techphin\User::class)->create();
+
+        $this->actingAs($user)
+             ->visit('/user/favourited')
+             ->see(':( No videos here yet.');
+    }
+
+    public function testVideoFavourited()
+    {
+        $user = factory(Pyjac\Techphin\User::class)->create();
+        $video = factory(Pyjac\Techphin\Video::class)->create();
+        $user->favourites()->attach($video->id);
+        $this->actingAs($user)
+             ->visit('/user/favourited')
+             ->see(str_limit($video->title, 70));
     }
 
     public function testVideoUploaded()
@@ -101,6 +120,26 @@ class UserDashoardTest extends TestCase
              ->see('The link field is required.')
              ->see('The description field is required.')
              ->see('The category id field is required.');
+    }
+
+    public function testUpdateProfile()
+    {
+        $user = factory(Pyjac\Techphin\User::class)->create();
+        $this->actingAs($user)
+             ->visit('/user/profile')
+             ->type('taju', 'firstname')
+             ->press('Update Profile')
+             ->see('Profile Updated');
+    }
+
+    public function testUpdateProfileUploadFile()
+    {
+        $user = factory(Pyjac\Techphin\User::class)->create();
+        $this->actingAs($user)
+             ->visit('/user/profile')
+             ->attach(storage_path('Python.jpg'), 'image')
+             ->press('Update Profile')
+             ->see('Profile Updated');
     }
 
     public function testUnAuthorizedUserRedirectToLogin()

@@ -17,36 +17,48 @@ class SocialAccountService
 
         if ($account) {
             return $account->user;
-        } else {
+        }
+        $account = new SocialAccount([
+            'provider_user_id' => $providerUser->getId(),
+            'provider' => $providerName
+        ]);
 
-            $account = new SocialAccount([
-                'provider_user_id' => $providerUser->getId(),
-                'provider' => $providerName
-            ]);
+        $user = $this->resolveUser($providerName, $providerUser);
 
-            $user = User::whereEmail($providerUser->getEmail())->first();
+        $account->user()->associate($user);
+        $account->save();
 
-            if (!$user) {
-                $name = explode(" ", $providerUser->getName());
-                $firstname = $name[0];
-                $lastname = implode(" ", array_slice($name, 1));
-                $user = User::create([
-                    'email' => $providerUser->getEmail(),
-                    'firstname' => $firstname,
-                    'lastname' => $lastname,
-                    'image' => $providerUser->getAvatar(),
-                    'username' => strtolower($firstname).'.'.time(),
-                    'password' => "",
-                    'role' => 'user'
-                ]);
-            }
+        return $user;
+    }
 
-            $account->user()->associate($user);
-            $account->save();
+    private function resolveUser($providerName, $providerUser)
+    {
+        $user = User::whereEmail($providerUser->getEmail())->first();
 
-            return $user;
-
+        if (!$user) {
+            $user = $this->createUser($providerName, $providerUser);
         }
 
+        return $user;
+    }
+
+    public function createUser($providerName, $providerUser)
+    {
+        $name = explode(" ", $providerUser->getName());
+        $firstname = $name[0];
+        $lastname = implode(" ", array_slice($name, 1));
+        $avatar = $providerUser->getAvatar();
+        if (strpos(strtolower($providerName), 'github') !== false) {
+            $avatar = $providerUser->avatar;
+        }
+        return User::create([
+            'email' => $providerUser->getEmail(),
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'image' => $avatar,
+            'username' => strtolower($firstname).'.'.time(),
+            'password' => "",
+            'role' => 'user'
+        ]);
     }
 }
