@@ -2,12 +2,15 @@
 
 namespace Pyjac\Techphin\Http\Controllers;
 
+use Cloudder;
 use Pyjac\Techphin\Http\Requests;
 use Pyjac\Techphin\Category;
 use Pyjac\Techphin\Video;
 use Pyjac\Techphin\Tag;
 use Pyjac\Techphin\Http\Requests\VideoUploadRequest;
+use Pyjac\Techphin\Http\Requests\UserProfileRequest;
 use Illuminate\Http\Request;
+
 
 class UserDashboardController extends Controller
 {
@@ -31,6 +34,40 @@ class UserDashboardController extends Controller
         $categories = Category::select(['id', 'name', 'icon'])->get();
         $tags = Tag::select(['name'])->get();
         return view('user.upload', compact('categories'), compact('tags'));
+    }
+
+    /**
+     * Show user profile page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function profile()
+    {
+        return view('user.profile');
+    }
+
+    /**
+     * Show user profile page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function updateProfile(UserProfileRequest $request)
+    {
+        auth()->user()->update($request->all());
+
+        $image = $request->file('image');
+        if($image && $image->isValid()){
+            $avatar = Cloudder::upload($image, null, [
+                "format" => "jpg",
+                "crop" => "fill",
+                "width" => 250,
+                "height" => 250
+                ]);
+            auth()->user()->update(['image' => Cloudder::getResult()['url']]);
+        }
+
+
+        return redirect()->back()->with('success', "Profile Updated");
     }
 
     /**
