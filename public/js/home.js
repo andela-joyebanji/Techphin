@@ -24,5 +24,8 @@ $(document)
         $("#browse-vid").click(function() {
             scrollToID('popular-videos');
         });
+        $(".search.link.icon").click(function(){
+          $('#search').submit();
+        });
 
     });

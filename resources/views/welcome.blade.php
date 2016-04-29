@@ -22,13 +22,15 @@
   <!-- Following Menu -->
   <div class="ui large top fixed borderless hidden menu" id="navBarContext">
     <div class="ui container">
-      <a class="item">Techphin</a>
-      <div class="item" id="search">
-          <div class="ui icon input">
-            <input type="text" placeholder="Search...">
-            <i class="search link icon"></i>
-          </div>
-      </div>
+       <a class="item" id="logo-text" href="{{ resolve_url('/') }}">
+                    <h1>Techphin</h1>
+                </a>
+      <form class="ui form item" id="search" method="GET" action="{{ resolve_url('/search')}}">
+                    <div class="ui icon input">
+                        <input type="text" name="queryString" placeholder="Search...">
+                        <i class="search link icon"></i>
+                    </div>
+                  </form>
       <div class="right menu">
         <div class="item">
           <button class="ui blue basic button">Login </button>
@@ -41,7 +43,7 @@
   <div class="pusher">
     <div class="ui  vertical masthead center aligned segment">
 
-      <div class="ui container">
+      <div class="ui container" style="height: 55px;">
         <div class="ui large secondary borderless menu">
           <a class="item" id="logo-text">
             <h1>Techphin</h1>

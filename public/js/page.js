@@ -5,4 +5,22 @@ $(document)
         $('#popular-videos .cards .image').dimmer({
             on: 'hover'
         });
+
+        $(".search.link.icon").click(function(){
+          $('#search').submit();
+        });
+        $('#search').form({
+          fields: {
+            queryString: {
+              identifier  : 'queryString',
+              rules: [
+              {
+                type   : 'empty'
+              }
+              ]
+            }
+          },
+          inline : true,
+          on     : 'blur'
+        });
     });

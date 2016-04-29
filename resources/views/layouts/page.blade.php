@@ -32,12 +32,15 @@
                 <a class="item" id="logo-text" href="{{ resolve_url('/') }}">
                     <h1>Techphin</h1>
                 </a>
-                <div class="item" id="search">
+
+                  <form class="ui form item" id="search" method="GET" action="{{ resolve_url('/search')}}">
                     <div class="ui icon input">
-                        <input type="text" placeholder="Search...">
+                        <input type="text" name="queryString" placeholder="Search...">
                         <i class="search link icon"></i>
                     </div>
-                </div>
+                  </form>
+
+
 
                 <div class="right menu">
                     <div class="item">

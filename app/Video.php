@@ -84,4 +84,14 @@ class Video extends Model
     {
         return $this->favouriters()->count();
     }
+
+    /**
+     * Scope a query to search by emoji name.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeSearch($query, $queryString)
+    {
+        return $query->where('title', 'like', "%$queryString%");
+    }
 }
