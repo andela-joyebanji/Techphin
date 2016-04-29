@@ -5,7 +5,7 @@
 <div class="ui statistics">
   <div class="statistic">
     <div class="value">
-      <i class="icon video play"></i> 0
+      <i class="icon video play"></i> {{ auth()->user()->videos()->count() }}
     </div>
     <div class="label">
       Videos
@@ -13,7 +13,7 @@
   </div>
   <div class="statistic">
     <div class="value">
-      <i class="icon unhide"></i> 0
+      <i class="icon unhide"></i> {!! auth()->user()->videosViewCount() !!}
     </div>
     <div class="label">
       Views
@@ -21,7 +21,7 @@
   </div>
   <div class="statistic">
     <div class="value">
-      <i class="icon comments"></i> 0
+      <i class="icon comments"></i> {{ auth()->user()->videosCommentCount()->count() }}
     </div>
     <div class="label">
       Comments
