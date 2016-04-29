@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/andela-joyebanji/Techphin.svg?branch=develop)](https://travis-ci.org/andela-joyebanji/Techphin)
  [![Coverage Status](https://coveralls.io/repos/github/andela-joyebanji/Techphin/badge.svg?branch=develop)](https://coveralls.io/github/andela-joyebanji/Techphin?branch=develop)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/andela-joyebanji/OpenSourceEvangelist/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/andela-joyebanji/OpenSourceEvangelist/?branch=develop)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/andela-joyebanji/Techphin/badges/quality-score.png?b=develop)](https://scrutinizer-ci.com/g/andela-joyebanji/Techphin/?branch=develop)
 
 [Techphin](https://techphin.herokuapp.com) is a learning platform that is open to people interested in the latest technologies online (Youtube hosted videos).
 
