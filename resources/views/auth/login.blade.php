@@ -72,7 +72,7 @@
 
   <div class="ui middle aligned center aligned grid">
     <div class="ui column segment">
-      <a class="item ui header" id="logo-text" href="{{ url('/') }}">
+      <a class="item ui header" id="logo-text" href="{{ resolve_url('/') }}">
             <h1>Techphin</h1>
       </a>
       <h3 class="ui header">
@@ -82,7 +82,7 @@
         </div>
       </h3>
       <div class="ui basic segment">
-        <form class="ui large form" method="POST" action="{{ url('/login') }}">
+        <form class="ui large form" method="POST" action="{{ resolve_url('/login') }}">
           <div class="ui error message">
 
             @unless (count($errors) === 0)
@@ -120,22 +120,22 @@
           <i class="tag icon"></i>
           Login via Social
         </h4>
-        <a class="ui facebook button" href="{{ url('/auth/facebook') }}">
+        <a class="ui facebook button" href="{{ resolve_url('/auth/facebook') }}">
           <i class="facebook icon"></i>
           Facebook
         </a>
-        <a class="ui twitter button" href="{{ url('/auth/twitter') }}">
+        <a class="ui twitter button" href="{{ resolve_url('/auth/twitter') }}">
           <i class="twitter icon"></i>
           Twitter
         </a>
-        <a class="ui google plus button" href="{{ url('/auth/google') }}">
+        <a class="ui google plus button" href="{{ resolve_url('/auth/google') }}">
           <i class="google plus icon"></i>
           Google Plus
         </a>
     </div>
 
       <div class="ui message">
-        New ? <a href="{{ url('/register') }}">Register</a>
+        New ? <a href="{{ resolve_url('/register') }}">Register</a>
       </div>
     </div>
   </div>
