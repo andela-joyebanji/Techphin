@@ -32,5 +32,13 @@ $(document)
   <h2 class="ui header dividing">{{ $title }}</h2>
   <div class="ui four stackable cards">
     @each('partials.delete-video-card', $videos, 'video', 'partials.no-videos')
+    <div class="ui middle aligned stackable grid container">
+      <div class="row">
+        <div class="center aligned column">
+
+             {!! $videos->links() !!}
+        </div>
+      </div>
+    </div>
   </div>
 @endsection
