@@ -100,7 +100,7 @@ class UserDashboardController extends Controller
     {
         $video = new Video($request->all());
         $video = $request->user()->videos()->save($video);
-        $video->attachTagsToVideo(explode(',', $request->tags));
+        $video->attachTagsToVideo(explode(',', trim($request->tags)));
         return redirect()->back()->with('success', "Video Successfully Uploaded. Click <a href='/videos/$video->id'>here</a> to view video");
     }
 }

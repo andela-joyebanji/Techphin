@@ -2,6 +2,8 @@
 
 namespace Pyjac\Techphin\Providers;
 
+use Validator;
+use Youtube;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,6 +23,12 @@ class AppServiceProvider extends ServiceProvider
         if (!\App::environment('local')) {
               \URL::forceSchema('https');
          }
+
+        Validator::extend('validYoutubeVideo', function($attribute, $value, $parameters, $validator) {
+            $videoId = Youtube::parseVidFromURL($value);
+
+            return Youtube::getVideoInfo($videoId) != false;
+        });
     }
 
     /**
