@@ -2,8 +2,6 @@
 
 namespace Pyjac\Techphin\Http\Requests;
 
-use Pyjac\Techphin\Http\Requests\Request;
-
 class UserProfileRequest extends Request
 {
     /**
@@ -24,10 +22,10 @@ class UserProfileRequest extends Request
     public function rules()
     {
         return [
-            'username' => 'required|max:255|unique:users,username,'.auth()->user()->id,
+            'username'  => 'required|max:255|unique:users,username,'.auth()->user()->id,
             'firstname' => 'required|max:255',
-            'lastname' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users,email,'.auth()->user()->id,
+            'lastname'  => 'required|max:255',
+            'email'     => 'required|email|max:255|unique:users,email,'.auth()->user()->id,
         ];
     }
 }

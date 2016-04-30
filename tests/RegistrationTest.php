@@ -1,11 +1,6 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-
-use Pyjac\Techphin\User;
-use Pyjac\Techphin\Category;
 
 class RegistrationTest extends TestCase
 {

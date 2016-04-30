@@ -12,7 +12,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'firstname', 'lastname', 'username', 'email', 'password', 'image', 'role'
+        'firstname', 'lastname', 'username', 'email', 'password', 'image', 'role',
     ];
 
     /**
@@ -33,13 +33,16 @@ class User extends Authenticatable
     {
         $views = $this->videos()->sum('views');
 
-        if($views == 0) return " 0 ";
+        if ($views == 0) {
+            return ' 0 ';
+        }
+
         return $views;
     }
 
     public function scopeVideosCommentCount()
     {
-        return $this->videos()->rightJoin('comments','comments.video_id','=','videos.id');
+        return $this->videos()->rightJoin('comments', 'comments.video_id', '=', 'videos.id');
     }
 
     public function favourites()
@@ -50,12 +53,13 @@ class User extends Authenticatable
     public function favourite($videoId)
     {
         $favourites = $this->favourites();
-        if(!$this->isFavourited($videoId)) {
+        if (!$this->isFavourited($videoId)) {
             $favourites->attach($videoId);
+
             return 1;
-        }
-        else {
+        } else {
             $favourites->detach($videoId);
+
             return -1;
         }
     }

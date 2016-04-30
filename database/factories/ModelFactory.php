@@ -19,14 +19,14 @@ $factory->define(Pyjac\Techphin\User::class, function (Faker\Generator $faker) {
         'email'     => $faker->safeEmail,
         'password'  => bcrypt(str_random(10)),
         'role'      => 'user',
-        'image'     => asset('img/profile-placeholder.png')
+        'image'     => asset('img/profile-placeholder.png'),
     ];
 });
 
 $factory->define(Pyjac\Techphin\Category::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->unique()->word,
-        'icon' => $faker->randomElement(['devicon-php-plain', 'devicon-laravel-plain', 'devicon-javascript-plain', 'devicon-angularjs-plain'])
+        'icon' => $faker->randomElement(['devicon-php-plain', 'devicon-laravel-plain', 'devicon-javascript-plain', 'devicon-angularjs-plain']),
     ];
 });
 
@@ -43,7 +43,7 @@ $factory->define(Pyjac\Techphin\Video::class, function (Faker\Generator $faker) 
         'link'        => 'https://www.youtube.com/watch?v=Yhn5snJGvAo',
         'description' => $faker->sentence(10),
         'user_id'     => factory(Pyjac\Techphin\User::class)->create()->id,
-        'category_id' => factory(Pyjac\Techphin\Category::class)->create()->id
+        'category_id' => factory(Pyjac\Techphin\Category::class)->create()->id,
     ];
 });
 
@@ -51,9 +51,9 @@ $factory->define(Pyjac\Techphin\SocialAccount::class, function (Faker\Generator 
 
     return [
             'provider_user_id' => $faker->ean8,
-            'provider' => $faker->firstName,
-            'user_id' => function () {
+            'provider'         => $faker->firstName,
+            'user_id'          => function () {
                 return factory(Pyjac\Techphin\User::class)->create()->id;
-            }
+            },
         ];
 });

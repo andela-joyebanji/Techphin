@@ -2,8 +2,6 @@
 
 namespace Pyjac\Techphin\Http\Requests;
 
-use Pyjac\Techphin\Http\Requests\Request;
-
 class CommentRequest extends Request
 {
     /**
@@ -24,7 +22,7 @@ class CommentRequest extends Request
     public function rules()
     {
         return [
-            'body' => 'required'
+            'body' => 'required',
         ];
     }
 }

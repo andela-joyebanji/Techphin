@@ -18,14 +18,14 @@ class Video extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-     /**
+    /**
      * Get the category the video belongs to.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function category()
     {
-      return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class);
     }
 
     /**
@@ -35,7 +35,7 @@ class Video extends Model
      */
     public function comments()
     {
-      return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class);
     }
 
     /**
@@ -58,13 +58,11 @@ class Video extends Model
     {
         $tagsCollection = [];
         foreach ($tags as $key => $tag) {
-
             $tagModel = Tag::firstOrCreate(['name' => strtolower($tag)]);
             $tagsCollection[] = $tagModel->id;
         }
 
         return $tagsCollection;
-
     }
 
     public function detachTagsFromVideo($tags)
@@ -80,13 +78,13 @@ class Video extends Model
 
     public function scopePopular($query, $limit = 12)
     {
-        return $query->with(['category','owner'])->take($limit);
+        return $query->with(['category', 'owner'])->take($limit);
     }
 
     public function incrementViews()
     {
-      $this->views++;
-      $this->save();
+        $this->views++;
+        $this->save();
     }
 
     public function favouriters()

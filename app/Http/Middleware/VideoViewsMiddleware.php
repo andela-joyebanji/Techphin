@@ -9,14 +9,15 @@ class VideoViewsMiddleware
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
+     *
      * @return mixed
      */
     public function handle($request, Closure $next)
     {
-       $request->video->incrementViews();
-       
-       return $next($request);
+        $request->video->incrementViews();
+
+        return $next($request);
     }
 }

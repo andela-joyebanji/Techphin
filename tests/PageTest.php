@@ -1,11 +1,8 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-
-use Pyjac\Techphin\User;
 use Pyjac\Techphin\Category;
+use Pyjac\Techphin\User;
 
 class PageTest extends TestCase
 {
@@ -13,74 +10,74 @@ class PageTest extends TestCase
 
     public function testVideoListingPage()
     {
-      $this->visit('/videos')
+        $this->visit('/videos')
              ->see('All Videos');
     }
 
     public function testVideoPage()
     {
-      $video = factory(Pyjac\Techphin\Video::class)->create();
-      $this->visit('/videos/'.$video->id)
+        $video = factory(Pyjac\Techphin\Video::class)->create();
+        $this->visit('/videos/'.$video->id)
              ->see($video->description);
     }
 
     public function testVideoPageShowsFavourite()
     {
-      $video = factory(Pyjac\Techphin\Video::class)->create();
-      $this->visit('/videos/'.$video->id)
-             ->see($video->favourites()." favourites");
+        $video = factory(Pyjac\Techphin\Video::class)->create();
+        $this->visit('/videos/'.$video->id)
+             ->see($video->favourites().' favourites');
     }
 
     public function testVideoPageViews()
     {
-      $video = factory(Pyjac\Techphin\Video::class)->create();
-      $this->visit('/videos/'.$video->id)
-             ->see(($video->views + 1)." views");
+        $video = factory(Pyjac\Techphin\Video::class)->create();
+        $this->visit('/videos/'.$video->id)
+             ->see(($video->views + 1).' views');
     }
 
     public function testCategoryVideos()
     {
-      $category = factory(Pyjac\Techphin\Category::class)->create();
-      $this->visit('/videos/category/'.$category->name)
-             ->see("Videos in Category : ".$category->name);
+        $category = factory(Pyjac\Techphin\Category::class)->create();
+        $this->visit('/videos/category/'.$category->name)
+             ->see('Videos in Category : '.$category->name);
     }
 
-     public function testTagVideos()
+    public function testTagVideos()
     {
-      $tag = factory(Pyjac\Techphin\Tag::class)->create();
-      $this->visit('/videos/tag/'.$tag->name)
-             ->see("Videos in Tag : ".$tag->name);
+        $tag = factory(Pyjac\Techphin\Tag::class)->create();
+        $this->visit('/videos/tag/'.$tag->name)
+             ->see('Videos in Tag : '.$tag->name);
     }
 
     public function testUserVideos()
     {
-      $user = factory(Pyjac\Techphin\User::class)->create();
-      $video = factory(Pyjac\Techphin\Video::class)->create();
-      $user->videos()->save($video);
-      $this->visit('/videos/user/'.$user->username)
+        $user = factory(Pyjac\Techphin\User::class)->create();
+        $video = factory(Pyjac\Techphin\Video::class)->create();
+        $user->videos()->save($video);
+        $this->visit('/videos/user/'.$user->username)
              ->see(str_limit($video->title, 70));
     }
 
     public function testAuthorizedUserRedirectToVideos()
     {
-      $user = factory(Pyjac\Techphin\User::class)->create();
-      $this->actingAs($user)
+        $user = factory(Pyjac\Techphin\User::class)->create();
+        $this->actingAs($user)
            ->visit('/')
            ->seePageIs('/videos');
     }
 
     public function testAuthorizedUserRedirectFromLogin()
     {
-      $user = factory(Pyjac\Techphin\User::class)->create();
-      $this->actingAs($user)
+        $user = factory(Pyjac\Techphin\User::class)->create();
+        $this->actingAs($user)
            ->visit('/login')
            ->seePageIs('/videos');
     }
 
     public function testHomePage()
     {
-      $this->visit('/')
-             ->see("Popular Videos")
-             ->see("Browse, Learn and Upload");
+        $this->visit('/')
+             ->see('Popular Videos')
+             ->see('Browse, Learn and Upload');
     }
 }

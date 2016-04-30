@@ -2,8 +2,8 @@
 
 namespace Pyjac\Techphin\Http\Controllers\Auth;
 
-use Pyjac\Techphin\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Pyjac\Techphin\Http\Controllers\Controller;
 
 class PasswordController extends Controller
 {

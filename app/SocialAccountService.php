@@ -20,7 +20,7 @@ class SocialAccountService
         }
         $account = new SocialAccount([
             'provider_user_id' => $providerUser->getId(),
-            'provider' => $providerName
+            'provider'         => $providerName,
         ]);
 
         $user = $this->resolveUser($providerName, $providerUser);
@@ -44,21 +44,22 @@ class SocialAccountService
 
     public function createUser($providerName, $providerUser)
     {
-        $name = explode(" ", $providerUser->getName());
+        $name = explode(' ', $providerUser->getName());
         $firstname = $name[0];
-        $lastname = implode(" ", array_slice($name, 1));
+        $lastname = implode(' ', array_slice($name, 1));
         $avatar = $providerUser->getAvatar();
         if (strpos(strtolower($providerName), 'github') !== false) {
             $avatar = $providerUser->avatar;
         }
+
         return User::create([
-            'email' => $providerUser->getEmail(),
+            'email'     => $providerUser->getEmail(),
             'firstname' => $firstname,
-            'lastname' => $lastname,
-            'image' => $avatar,
-            'username' => strtolower($firstname).'.'.time(),
-            'password' => "",
-            'role' => 'user'
+            'lastname'  => $lastname,
+            'image'     => $avatar,
+            'username'  => strtolower($firstname).'.'.time(),
+            'password'  => '',
+            'role'      => 'user',
         ]);
     }
 }

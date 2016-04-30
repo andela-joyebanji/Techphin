@@ -2,8 +2,6 @@
 
 namespace Pyjac\Techphin\Http\Requests;
 
-use Pyjac\Techphin\Http\Requests\Request;
-
 class VideoUploadRequest extends Request
 {
     /**
@@ -24,10 +22,10 @@ class VideoUploadRequest extends Request
     public function rules()
     {
         return [
-            'title' => 'required|max:255',
-            'link' => 'required|max:255|regex:/^https:\/\/www\.youtube\.com\/watch\\?v=/|validYoutubeVideo',
+            'title'       => 'required|max:255',
+            'link'        => 'required|max:255|regex:/^https:\/\/www\.youtube\.com\/watch\\?v=/|validYoutubeVideo',
             'description' => 'required|max:255',
-            'category_id' => 'required|exists:categories,id'
+            'category_id' => 'required|exists:categories,id',
         ];
     }
 }
