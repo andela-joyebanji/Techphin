@@ -25,7 +25,7 @@ class VideoUploadRequest extends Request
     {
         return [
             'title' => 'required|max:255',
-            'link' => 'required|max:255|regex:/^https:\/\/www\.youtube\.com\/watch\\?v=/',
+            'link' => 'required|max:255|regex:/^https:\/\/www\.youtube\.com\/watch\\?v=/|validYoutubeVideo',
             'description' => 'required|max:255',
             'category_id' => 'required|exists:categories,id'
         ];

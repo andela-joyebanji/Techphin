@@ -157,6 +157,7 @@ return [
         Pyjac\Techphin\Providers\EventServiceProvider::class,
         Pyjac\Techphin\Providers\RouteServiceProvider::class,
         'JD\Cloudder\CloudderServiceProvider',
+        'Alaouy\Youtube\YoutubeServiceProvider',
 
     ],
 
