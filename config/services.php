@@ -20,7 +20,7 @@ return [
     ],
 
     'ses' => [
-        'key' => env('SES_KEY'),
+        'key'    => env('SES_KEY'),
         'secret' => env('SES_SECRET'),
         'region' => 'us-east-1',
     ],
@@ -30,30 +30,30 @@ return [
     ],
 
     'google' => [
-        'client_id' => env('GOOGLE_KEY'),
+        'client_id'     => env('GOOGLE_KEY'),
         'client_secret' => env('GOOGLE_SECRET'),
-        'redirect' => env('GOOGLE_REDIRECT_URI'),
+        'redirect'      => env('GOOGLE_REDIRECT_URI'),
     ],
 
     'twitter' => [
-        'client_id' => env('TWITTER_ID'),
+        'client_id'     => env('TWITTER_ID'),
         'client_secret' => env('TWITTER_SECRET'),
-        'redirect' => env('TWITTER_URL'),
+        'redirect'      => env('TWITTER_URL'),
     ],
 
     'facebook' => [
-        'client_id' => env('FACEBOOK_ID'),
+        'client_id'     => env('FACEBOOK_ID'),
         'client_secret' => env('FACEBOOK_SECRET'),
-        'redirect' => env('FACEBOOK_URL'),
+        'redirect'      => env('FACEBOOK_URL'),
     ],
     'github' => [
-        'client_id' => env('GITHUB_ID'),
+        'client_id'     => env('GITHUB_ID'),
         'client_secret' => env('GITHUB_SECRET'),
-        'redirect' => env('GITHUB_URL'),
+        'redirect'      => env('GITHUB_URL'),
     ],
     'stripe' => [
-        'model' => App\User::class,
-        'key' => env('STRIPE_KEY'),
+        'model'  => App\User::class,
+        'key'    => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
 

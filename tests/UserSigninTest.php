@@ -1,11 +1,6 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-
-use Pyjac\Techphin\User;
-use Pyjac\Techphin\Category;
 
 class UserSiginTest extends TestCase
 {
@@ -13,7 +8,7 @@ class UserSiginTest extends TestCase
 
     public function testSiginSuccess()
     {
-        $user = factory(Pyjac\Techphin\User::class)->create(['password' => bcrypt('jacobu') ]);
+        $user = factory(Pyjac\Techphin\User::class)->create(['password' => bcrypt('jacobu')]);
         $this->visit('/login')
              ->type($user->email, 'email')
              ->type('jacobu', 'password')
@@ -38,4 +33,4 @@ class UserSiginTest extends TestCase
              ->press('Login')
              ->see('These credentials do not match our records.');
     }
-  }
+}

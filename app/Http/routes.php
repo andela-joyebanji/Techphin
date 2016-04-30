@@ -28,7 +28,7 @@ Route::auth();
  */
 Route::get('auth/{provider}', [
     'uses' => 'Auth\SocialAuthController@redirectToProvider',
-    'as' => 'social.login',
+    'as'   => 'social.login',
 ]);
 Route::get('auth/{provider}/callback', 'Auth\SocialAuthController@handleProviderCallback');
 
@@ -37,7 +37,7 @@ Route::group(['prefix' => 'api', 'middleware' => 'auth'], function () {
   Route::get('/videos/{video}/delete', 'ApiController@deleteVideo');
 });
 
-/**
+/*
  * User Dashboard routes
  */
 Route::group(['prefix' => 'user', 'middleware' => 'auth'], function () {

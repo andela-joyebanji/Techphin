@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class UserDashoardTest extends TestCase
@@ -12,8 +10,9 @@ class UserDashoardTest extends TestCase
     {
         $user = factory(Pyjac\Techphin\User::class)->create();
         $this->actingAs($user)->visit('/user/dashboard')
-             ->see("Dashboard");
+             ->see('Dashboard');
     }
+
     public function testVideoUploadWhenAllFieldsArePassedCorrectly()
     {
         $user = factory(Pyjac\Techphin\User::class)->create();
@@ -156,6 +155,5 @@ class UserDashoardTest extends TestCase
 
         $response = $this->call('POST', '/user/upload', []);
         $this->assertRedirectedTo('/login');
-
     }
 }

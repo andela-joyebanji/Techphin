@@ -3,14 +3,11 @@
 namespace Pyjac\Techphin\Http\Controllers;
 
 use Cloudder;
-use Pyjac\Techphin\Http\Requests;
 use Pyjac\Techphin\Category;
-use Pyjac\Techphin\Video;
-use Pyjac\Techphin\Tag;
-use Pyjac\Techphin\Http\Requests\VideoUploadRequest;
 use Pyjac\Techphin\Http\Requests\UserProfileRequest;
-use Illuminate\Http\Request;
-
+use Pyjac\Techphin\Http\Requests\VideoUploadRequest;
+use Pyjac\Techphin\Tag;
+use Pyjac\Techphin\Video;
 
 class UserDashboardController extends Controller
 {
@@ -33,6 +30,7 @@ class UserDashboardController extends Controller
     {
         $categories = Category::select(['id', 'name', 'icon'])->get();
         $tags = Tag::select(['name'])->get();
+
         return view('user.upload', compact('categories'), compact('tags'));
     }
 
@@ -56,18 +54,17 @@ class UserDashboardController extends Controller
         auth()->user()->update($request->all());
 
         $image = $request->file('image');
-        if($image && $image->isValid()){
+        if ($image && $image->isValid()) {
             $avatar = Cloudder::upload($image, null, [
-                "format" => "jpg",
-                "crop" => "fill",
-                "width" => 250,
-                "height" => 250
+                'format' => 'jpg',
+                'crop'   => 'fill',
+                'width'  => 250,
+                'height' => 250,
                 ]);
             auth()->user()->update(['image' => Cloudder::getResult()['url']]);
         }
 
-
-        return redirect()->back()->with('success', "Profile Updated");
+        return redirect()->back()->with('success', 'Profile Updated');
     }
 
     /**
@@ -78,6 +75,7 @@ class UserDashboardController extends Controller
     public function uploaded()
     {
         $videos = auth()->user()->videos()->paginate(12);
+
         return view('user.uploaded', compact('videos'));
     }
 
@@ -104,11 +102,12 @@ class UserDashboardController extends Controller
         //     redirect()->back();
         // }
 
-        if(!$this->IsOwner($video->id)){
+        if (!$this->IsOwner($video->id)) {
             return redirect('/user/uploaded');
         }
         $categories = Category::select(['id', 'name', 'icon'])->get();
         $tags = Tag::select(['name'])->get();
+
         return view('user.editVideo', compact('video', 'tags', 'categories'));
     }
 
@@ -122,6 +121,7 @@ class UserDashboardController extends Controller
         $video = new Video($request->all());
         $video = $request->user()->videos()->save($video);
         $video->attachTagsToVideo(explode(',', trim($request->tags)));
+
         return redirect()->back()->with('success', "Video Successfully Uploaded. Click <a href='/videos/$video->id'>here</a> to view video");
     }
 
@@ -132,7 +132,7 @@ class UserDashboardController extends Controller
      */
     public function updateVideo(VideoUploadRequest $request, Video $video)
     {
-        if(!$this->IsOwner($video->id)){
+        if (!$this->IsOwner($video->id)) {
             redirect('/user/uploaded');
         }
 
@@ -141,18 +141,20 @@ class UserDashboardController extends Controller
         $video->update($request->all());
         $video->detachTagsFromVideo(explode(',', trim($tags)));
         $video->attachTagsToVideo(explode(',', trim($request->tags)));
-        return redirect()->back()->with('success', "Video Successfully Edited.");
+
+        return redirect()->back()->with('success', 'Video Successfully Edited.');
     }
 
     /**
      * Prevent user from viewing edit form if he/she is not the owner
-     * of the video
+     * of the video.
      *
-     * @param  int $videoId [description]
+     * @param int $videoId [description]
+     *
      * @return mixed
      */
     private function IsOwner($videoId)
     {
-       return auth()->user()->videos()->find($videoId);
+        return auth()->user()->videos()->find($videoId);
     }
 }

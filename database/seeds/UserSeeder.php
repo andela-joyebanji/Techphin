@@ -16,20 +16,20 @@ class UserSeeder extends Seeder
             'firstname' => 'Oyebanji',
             'lastname'  => 'Jacob',
             'username'  => 'pyjac',
-            'email'     =>  'oyebanji@andela.com',
+            'email'     => 'oyebanji@andela.com',
             'password'  => bcrypt('jacobu'),
             'role'      => 'user',
-            'image'     => asset('img/profile-placeholder.png')
+            'image'     => asset('img/profile-placeholder.png'),
         ]);
 
         User::create([
             'firstname' => 'Oyebanji',
             'lastname'  => 'Jacob',
             'username'  => 'pyjacAdmin',
-            'email'     =>  'oyebanji05@andela.com',
+            'email'     => 'oyebanji05@andela.com',
             'password'  => bcrypt('jacobu'),
             'role'      => 'admin',
-            'image'     => asset('img/profile-placeholder.png')
+            'image'     => asset('img/profile-placeholder.png'),
         ]);
     }
 }

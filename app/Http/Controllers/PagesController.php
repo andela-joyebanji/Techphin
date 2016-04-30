@@ -2,15 +2,13 @@
 
 namespace Pyjac\Techphin\Http\Controllers;
 
-use Pyjac\Techphin\Video;
-use Pyjac\Techphin\Tag;
-use Pyjac\Techphin\Comment;
-use Pyjac\Techphin\User;
 use Pyjac\Techphin\Category;
-use Pyjac\Techphin\Http\Requests;
-use Illuminate\Http\Request;
+use Pyjac\Techphin\Comment;
 use Pyjac\Techphin\Http\Requests\CommentRequest;
 use Pyjac\Techphin\Http\Requests\SearchRequest;
+use Pyjac\Techphin\Tag;
+use Pyjac\Techphin\User;
+use Pyjac\Techphin\Video;
 
 class PagesController extends Controller
 {
@@ -21,12 +19,13 @@ class PagesController extends Controller
      */
     public function index()
     {
-        if(auth()->user()) {
-            return redirect("/videos");
+        if (auth()->user()) {
+            return redirect('/videos');
         }
-      $videos = Video::popular()->get();
-      $categories = Category::select(['id', 'name', 'icon'])->get();
-      return view('welcome', compact('videos', 'categories'));
+        $videos = Video::popular()->get();
+        $categories = Category::select(['id', 'name', 'icon'])->get();
+
+        return view('welcome', compact('videos', 'categories'));
     }
 
     /**
@@ -36,8 +35,9 @@ class PagesController extends Controller
      */
     public function videos()
     {
-        $videos = Video::with(['category','owner'])->paginate(12);
+        $videos = Video::with(['category', 'owner'])->paginate(12);
         $categories = Category::select(['id', 'name', 'icon'])->get();
+
         return view('videos', compact('videos'), compact('categories'));
     }
 
@@ -48,9 +48,10 @@ class PagesController extends Controller
      */
     public function video(Video $video)
     {
-      $relatedVideos = $video->relatedVideos();
-      $comments = $video->comments()->get();
-      return view('video', compact('video', 'relatedVideos', 'comments'));
+        $relatedVideos = $video->relatedVideos();
+        $comments = $video->comments()->get();
+
+        return view('video', compact('video', 'relatedVideos', 'comments'));
     }
 
     /**
@@ -60,9 +61,10 @@ class PagesController extends Controller
      */
     public function categoryVideos(Category $category)
     {
-      $videos = $category->videos()->paginate(12);
-      $categories = Category::select(['id', 'name', 'icon'])->get();
-      return view('category_videos', compact('category', 'videos', 'categories'));
+        $videos = $category->videos()->paginate(12);
+        $categories = Category::select(['id', 'name', 'icon'])->get();
+
+        return view('category_videos', compact('category', 'videos', 'categories'));
     }
 
     /**
@@ -72,10 +74,11 @@ class PagesController extends Controller
      */
     public function videosSearch(SearchRequest $request)
     {
-      $queryString = $request->get("queryString");
-      $videos = Video::search($queryString)->paginate(12);
-      $categories = Category::select(['id', 'name', 'icon'])->get();
-      return view('search_videos', compact('queryString', 'videos', 'categories'));
+        $queryString = $request->get('queryString');
+        $videos = Video::search($queryString)->paginate(12);
+        $categories = Category::select(['id', 'name', 'icon'])->get();
+
+        return view('search_videos', compact('queryString', 'videos', 'categories'));
     }
 
     /**
@@ -85,9 +88,10 @@ class PagesController extends Controller
      */
     public function tagVideos(Tag $tag)
     {
-      $videos = $tag->videos()->paginate(12);
-      $categories = Category::select(['id', 'name', 'icon'])->get();
-      return view('tag_videos', compact('tag', 'videos', 'categories'));
+        $videos = $tag->videos()->paginate(12);
+        $categories = Category::select(['id', 'name', 'icon'])->get();
+
+        return view('tag_videos', compact('tag', 'videos', 'categories'));
     }
 
     /**
@@ -99,13 +103,13 @@ class PagesController extends Controller
     {
         $comment = new Comment(
                     [
-                        'body' => $request->get('body'),
-                        'user_id'     => auth()->user()->id
+                        'body'        => $request->get('body'),
+                        'user_id'     => auth()->user()->id,
                     ]);
         $comment = $video->comments()->save($comment);
+
         return redirect()->back();
     }
-
 
     /**
      * Show user videos list.
@@ -114,8 +118,9 @@ class PagesController extends Controller
      */
     public function userVideos(User $user)
     {
-      $videos = $user->videos()->paginate(12);
-      $categories = Category::select(['id', 'name', 'icon'])->get();
-      return view('user_videos', compact('user', 'videos', 'categories'));
+        $videos = $user->videos()->paginate(12);
+        $categories = Category::select(['id', 'name', 'icon'])->get();
+
+        return view('user_videos', compact('user', 'videos', 'categories'));
     }
 }

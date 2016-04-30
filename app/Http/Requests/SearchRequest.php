@@ -2,8 +2,6 @@
 
 namespace Pyjac\Techphin\Http\Requests;
 
-use Pyjac\Techphin\Http\Requests\Request;
-
 class SearchRequest extends Request
 {
     /**
@@ -24,7 +22,7 @@ class SearchRequest extends Request
     public function rules()
     {
         return [
-            'queryString' => 'required'
+            'queryString' => 'required',
         ];
     }
 }

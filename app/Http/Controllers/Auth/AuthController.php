@@ -2,11 +2,11 @@
 
 namespace Pyjac\Techphin\Http\Controllers\Auth;
 
+use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Pyjac\Techphin\Http\Controllers\Controller;
 use Pyjac\Techphin\User;
 use Validator;
-use Pyjac\Techphin\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class AuthController extends Controller
 {
@@ -45,36 +45,38 @@ class AuthController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param array $data
+     *
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
     {
         return Validator::make($data, [
             'firstname' => 'required|max:255',
-            'lastname' => 'required|max:255',
-            'username' => 'required|max:255|unique:users',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
+            'lastname'  => 'required|max:255',
+            'username'  => 'required|max:255|unique:users',
+            'email'     => 'required|email|max:255|unique:users',
+            'password'  => 'required|min:6|confirmed',
         ]);
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param array $data
+     *
      * @return User
      */
     protected function create(array $data)
     {
         return User::create([
             'firstname' => $data['firstname'],
-            'lastname' => $data['lastname'],
-            'username' => $data['username'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'image' => asset('img/profile-placeholder.png'),
-            'role' => 'user',
+            'lastname'  => $data['lastname'],
+            'username'  => $data['username'],
+            'email'     => $data['email'],
+            'password'  => bcrypt($data['password']),
+            'image'     => asset('img/profile-placeholder.png'),
+            'role'      => 'user',
         ]);
     }
 }
