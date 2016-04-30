@@ -105,6 +105,29 @@ class UserDashoardTest extends TestCase
              ->see('The title field is required.');
     }
 
+    public function testEditVideo()
+    {
+        $video = factory(Pyjac\Techphin\Video::class)->create();
+        $this->actingAs($video->owner)
+             ->visit('/user/edit/video/'.$video->id)
+             ->type('Test', 'title')
+             ->type('https://www.youtube.com/watch?v=XMAsSEH3yys', 'link')
+             ->type('PHP Programming', 'description')
+             ->type('php,programming', 'tags')
+             ->type($video->category->id, 'category_id')
+             ->press('Edit Video')
+             ->see('Success');
+    }
+
+    public function testEditVideoNotOwner()
+    {
+        $video = factory(Pyjac\Techphin\Video::class)->create();
+        $video2 = factory(Pyjac\Techphin\Video::class)->create();
+        $this->actingAs($video->owner)
+             ->visit('/user/edit/video/'.$video2->id)
+             ->seePageIs('user/uploaded');
+    }
+
     public function testVideoUploadFailWhenRequiredFieldsAreEmpty()
     {
         $user = factory(Pyjac\Techphin\User::class)->create();
