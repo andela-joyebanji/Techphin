@@ -36,7 +36,7 @@ class PagesController extends Controller
      */
     public function videos()
     {
-        $videos = Video::with(['category','owner'])->get();
+        $videos = Video::with(['category','owner'])->paginate(12);
         $categories = Category::select(['id', 'name', 'icon'])->get();
         return view('videos', compact('videos'), compact('categories'));
     }
@@ -60,7 +60,7 @@ class PagesController extends Controller
      */
     public function categoryVideos(Category $category)
     {
-      $videos = $category->videos()->get();
+      $videos = $category->videos()->paginate(12);
       $categories = Category::select(['id', 'name', 'icon'])->get();
       return view('category_videos', compact('category', 'videos', 'categories'));
     }
@@ -73,7 +73,7 @@ class PagesController extends Controller
     public function videosSearch(SearchRequest $request)
     {
       $queryString = $request->get("queryString");
-      $videos = Video::search($queryString)->get();
+      $videos = Video::search($queryString)->paginate(12);
       $categories = Category::select(['id', 'name', 'icon'])->get();
       return view('search_videos', compact('queryString', 'videos', 'categories'));
     }
@@ -85,7 +85,7 @@ class PagesController extends Controller
      */
     public function tagVideos(Tag $tag)
     {
-      $videos = $tag->videos()->get();
+      $videos = $tag->videos()->paginate(12);
       $categories = Category::select(['id', 'name', 'icon'])->get();
       return view('tag_videos', compact('tag', 'videos', 'categories'));
     }
@@ -114,7 +114,7 @@ class PagesController extends Controller
      */
     public function userVideos(User $user)
     {
-      $videos = $user->videos()->get();
+      $videos = $user->videos()->paginate(12);
       $categories = Category::select(['id', 'name', 'icon'])->get();
       return view('user_videos', compact('user', 'videos', 'categories'));
     }

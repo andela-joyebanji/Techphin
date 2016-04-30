@@ -77,7 +77,8 @@ class UserDashboardController extends Controller
      */
     public function uploaded()
     {
-        return view('user.uploaded');
+        $videos = auth()->user()->videos()->paginate(12);
+        return view('user.uploaded', compact('videos'));
     }
 
     /**

@@ -20,7 +20,8 @@
         <div class="ui middle aligned stackable grid container">
           <div class="row">
             <div class="center aligned column">
-              <a class="ui button">Load More</a>
+
+                 {!! $videos->links() !!}
             </div>
           </div>
         </div>

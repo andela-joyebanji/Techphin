@@ -4,7 +4,7 @@
 @include(
           'partials.delete-dash-videos-list',
           [
-            'videos' => Auth::user()->videos,
+            'videos' => $videos,
             'title'  => 'Uploaded Videos'
           ]
         )
@@ -19,11 +19,11 @@
     <p style="text-align: center;">Are you sure you want to delete this video?</p>
   </div>
   <div class="actions">
-    <div class="ui red basic cancel inverted button">
+    <div class="ui green cancel inverted button">
       <i class="remove icon"></i>
       No
     </div>
-    <div class="ui green ok inverted button">
+    <div class="ui red ok inverted button">
       <i class="checkmark icon"></i>
       Yes
     </div>
@@ -33,23 +33,25 @@
 <script>
   $.fn.api.settings.api.deleteVideo = "{{ resolve_url('/api/videos/{videoid}/delete') }}";
 
-  $("#deleteVideo").click(function(){
+  $(".deleteVideo").click(function() {
+    var $toDelete = $(this);
     $('#deleteModal').modal({
           closable  : false,
-          onDeny    : function(){
+          onDeny    : function() {
             return true;
           },
           onApprove : function() {
-            $("#deleteVideoApi").click();
+            //console.log($toDelete.find(".deleteVideoApi"));
+            $toDelete.parent().find(".deleteVideoApi").click();
             return true;
           }
         })
         .modal('show');
   });
-  $("#deleteVideoApi").api({
+  $(".deleteVideoApi").api({
       action       : 'deleteVideo',
       onResponse : function(deleteStateResponse) {
-        if(deleteStateResponse.state == "deleted"){
+        if(deleteStateResponse.state == "deleted") {
           location.reload();
         }
       }

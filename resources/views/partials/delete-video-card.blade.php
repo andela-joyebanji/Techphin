@@ -23,9 +23,9 @@
       <i class="icon unhide"></i> {{ $video->views }} views
     </span>
   </div>
-  <div class="ui bottom red attached button" style="display: none" id="deleteVideoApi" data-videoId="{{ $video->id }}">
+  <div class="ui bottom red attached button deleteVideoApi" style="display: none" data-videoId="{{ $video->id }}">
     </div>
-  <div class="ui bottom red attached button" id="deleteVideo">
+  <div class="ui bottom red attached button deleteVideo">
       <i class="trash icon"></i>
       Delete
     </div>
