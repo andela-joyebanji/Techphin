@@ -15,6 +15,9 @@
       <a href="{{ resolve_url('videos/'.$video->id) }}">
         {{ str_limit($video->title, 70) }}
       </a>
+      <a href="{{ resolve_url('user/edit/video/'.$video->id) }}">
+        <i class="icon edit"></i>
+      </a>
     </div>
     <div class="meta">
      by: <a href="{{ resolve_url('videos/user/'.$video->owner->username) }}">{{ str_limit(ucwords($video->owner->username), 20) }}</a>

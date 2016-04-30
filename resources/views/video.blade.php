@@ -86,7 +86,11 @@
                     </div>
                   </div>
               </div>
+
             </div>
+          </div>
+          <div class="ui grid">
+             <div class="column">Category: <a href="{{ resolve_url('videos/category/'.$video->category->name) }}">{{ $video->category->name }}</a></div>
           </div>
 
             <h4 class="ui dividing header">Description</h4>

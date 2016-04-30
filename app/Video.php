@@ -50,13 +50,27 @@ class Video extends Model
 
     public function attachTagsToVideo($tags)
     {
+        $tagsCollection = $this->collectTags($tags);
+        $this->tags()->attach($tagsCollection);
+    }
+
+    private function collectTags($tags)
+    {
         $tagsCollection = [];
         foreach ($tags as $key => $tag) {
 
             $tagModel = Tag::firstOrCreate(['name' => strtolower($tag)]);
             $tagsCollection[] = $tagModel->id;
         }
-        $this->tags()->attach($tagsCollection);
+
+        return $tagsCollection;
+
+    }
+
+    public function detachTagsFromVideo($tags)
+    {
+        $tagsCollection = $this->collectTags($tags);
+        $this->tags()->detach($tagsCollection);
     }
 
     public function scopeRelatedVideos($query, $limit = 5)
