@@ -96,7 +96,6 @@ class UserDashboardController extends Controller
      */
     public function video(Video $video)
     {
-
         if (!auth()->user()->videos()->find($video->id)) {
             return redirect('/user/uploaded');
         }

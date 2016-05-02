@@ -2,11 +2,8 @@
 
 namespace Pyjac\Techphin\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use Pyjac\Techphin\Video;
-use Pyjac\Techphin\Http\Requests;
 use Pyjac\Techphin\Http\Requests\VideoUploadRequest;
+use Pyjac\Techphin\Video;
 
 class VideoController extends Controller
 {
@@ -20,11 +17,10 @@ class VideoController extends Controller
         //
     }
 
-
     /**
      * Store a newly created video in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -40,7 +36,8 @@ class VideoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -51,7 +48,8 @@ class VideoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -62,8 +60,9 @@ class VideoController extends Controller
     /**
      * Update the specified video in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  Pyjac\Techphin\Video  $video
+     * @param \Illuminate\Http\Request $request
+     * @param Pyjac\Techphin\Video     $video
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(VideoUploadRequest $request, Video $video)
@@ -83,7 +82,7 @@ class VideoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Pyjac\Techphin\Video  $video
+     * @param Pyjac\Techphin\Video $video
      *
      * @return \Illuminate\Http\Response
      */
