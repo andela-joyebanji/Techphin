@@ -29,6 +29,7 @@ class Kernel extends HttpKernel
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \Pyjac\Techphin\Http\Middleware\VerifyCsrfToken::class,
+            \Pyjac\Techphin\Http\Middleware\HttpsMiddleware::class,
         ],
 
         'api' => [
