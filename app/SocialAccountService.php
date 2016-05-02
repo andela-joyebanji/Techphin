@@ -57,7 +57,7 @@ class SocialAccountService
                                 ? $providerUser->getEmail() : $providerUser->getId().'@'.$providerName;
 
         return User::create([
-            'email'     => $providerUser->getEmail(),
+            'email'     => $email,
             'firstname' => $firstname,
             'lastname'  => $lastname,
             'image'     => $avatar,
