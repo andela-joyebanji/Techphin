@@ -51,6 +51,10 @@ class SocialAccountService
         if (strpos(strtolower($providerName), 'github') !== false) {
             $avatar = $providerUser->avatar;
         }
+        // If the email returned is null, we concatenate the user provider Id,
+        // `@` and provider name for email field.
+        $email = $providerUser->getEmail()
+                                ? $providerUser->getEmail() : $providerUser->getId().'@'.$providerName;
 
         return User::create([
             'email'     => $providerUser->getEmail(),
