@@ -96,13 +96,8 @@ class UserDashboardController extends Controller
      */
     public function video(Video $video)
     {
-        // Prevent user from viewing edit form if he/she is not the owner
-        // of the video
-        // if (!auth()->user()->videos()->find($video->id)) {
-        //     redirect()->back();
-        // }
 
-        if (!$this->IsOwner($video->id)) {
+        if (!auth()->user()->videos()->find($video->id)) {
             return redirect('/user/uploaded');
         }
         $categories = Category::select(['id', 'name', 'icon'])->get();
@@ -123,38 +118,5 @@ class UserDashboardController extends Controller
         $video->attachTagsToVideo(explode(',', trim($request->tags)));
 
         return redirect()->back()->with('success', "Video Successfully Uploaded. Click <a href='/videos/$video->id'>here</a> to view video");
-    }
-
-    /**
-     * Update video.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function updateVideo(VideoUploadRequest $request, Video $video)
-    {
-        if (!$this->IsOwner($video->id)) {
-            redirect('/user/uploaded');
-        }
-
-        //dd($video->tags()->get());
-        $tags = implode(',', $video->tags->pluck('name')->all());
-        $video->update($request->all());
-        $video->detachTagsFromVideo(explode(',', trim($tags)));
-        $video->attachTagsToVideo(explode(',', trim($request->tags)));
-
-        return redirect()->back()->with('success', 'Video Successfully Edited.');
-    }
-
-    /**
-     * Prevent user from viewing edit form if he/she is not the owner
-     * of the video.
-     *
-     * @param int $videoId [description]
-     *
-     * @return mixed
-     */
-    private function IsOwner($videoId)
-    {
-        return auth()->user()->videos()->find($videoId);
     }
 }

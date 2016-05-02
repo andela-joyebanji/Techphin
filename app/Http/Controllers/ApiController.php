@@ -12,15 +12,4 @@ class ApiController extends Controller
 
         return ['state' => $favouriteState];
     }
-
-    public function deleteVideo(Video $video)
-    {
-        $video = auth()->user()->videos()->find($video->id);
-        if (is_null($video)) {
-            return ['state' => "Can't Delete A Video You don't own."];
-        }
-        $video->delete();
-
-        return ['state' => 'deleted'];
-    }
 }
