@@ -5,7 +5,6 @@ namespace Pyjac\Techphin\Http\Controllers;
 use Cloudder;
 use Pyjac\Techphin\Category;
 use Pyjac\Techphin\Http\Requests\UserProfileRequest;
-use Pyjac\Techphin\Http\Requests\VideoUploadRequest;
 use Pyjac\Techphin\Tag;
 use Pyjac\Techphin\Video;
 
