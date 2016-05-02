@@ -1,8 +1,10 @@
 @extends('layouts.page')
 @section('title', $video->title)
 @section('styles')
+<script type="text/javascript" src="{{ resolve_asset('js/video.js') }}"></script>
 <script type="text/javascript">
   $(document).ready(function() {
+
     $.fn.api.settings.api.favourite = "{{ resolve_url('/api/favourite/{videoId}') }}";
     $('.ui.embed').embed({
       parameters: {
