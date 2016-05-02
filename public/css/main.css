@@ -155,9 +155,19 @@ html, .ui.header {
     #videos-list {
       min-height: 650px;
     }
+
     @media only screen and (max-width: 700px) {
-      .ui.fixed.menu {
-        display: none !important;
+
+      #search {
+          display: none !important;
+      }
+
+      #upload.item {
+        padding: 0px;
+      }
+
+      #username {
+        display: none;
       }
 
       .secondary.pointing.menu .item,

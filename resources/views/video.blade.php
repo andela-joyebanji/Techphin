@@ -1,4 +1,5 @@
 @extends('layouts.page')
+@section('title', $video->title)
 @section('styles')
 <script type="text/javascript">
   $(document).ready(function() {
@@ -58,7 +59,7 @@
 
 <div class="ui grid stackable centered">
   <div class="thirteen wide column">
-    <div class="ui grid">
+    <div class="ui stackable grid">
       <div class="ten wide column">
         <div class="ui segment" style="margin-top: 1.5rem;">
           <h2 class="ui dividing header">{{ $video->title }}</h2>
@@ -69,22 +70,31 @@
                 <span> {{ $video->owner->username }} </span>
               </div>
               <div class="right floated column" style="margin-top: 2em;">
-                  <div class="ui left labeled button" tabindex="0">
-                    <a class="ui basic right pointing label {{ $video->views }} views">
-                      {{ $video->views }}
-                    </a>
-                    <div class="ui button">
-                      <i class="icon unhide"></i> views
+                  <div class="ui labeled button" tabindex="0">
+                    <div class="ui button pointing">
+                      <i class="icon unhide"></i>
                     </div>
+                    <a class="ui basic left pointing label {{ $video->views }} views">
+                      {{ $video->views }} views
+                    </a>
                   </div>
-                  <div class="ui left labeled button" id="like" tabindex="0">
+                  <div class="ui labeled button" id="like" tabindex="0">
+                    <div class="ui button pointing @unless (auth()->user()) {{ "disabled" }} @endunless">
+                      <i class="heart icon @if (auth()->user() && auth()->user()->isFavourited($video->id)) {{ "red" }} @endif"></i>
+                    </div>
+                    <a class="ui basic left pointing label {{ $video->favourites() }} favourites">
+                      {{ $video->favourites() }}
+                    </a>
+                  </div>
+
+                  <!-- <div class="ui left labeled button" id="like" tabindex="0">
                     <a class="ui basic right pointing label {{ $video->favourites() }} favourites">
                       {{ $video->favourites() }}
                     </a>
                     <div class="ui button @unless (auth()->user()) {{ "disabled" }} @endunless">
                       <i class="heart icon @if (auth()->user() && auth()->user()->isFavourited($video->id)) {{ "red" }} @endif"></i>
                     </div>
-                  </div>
+                  </div> -->
               </div>
 
             </div>
@@ -182,7 +192,9 @@
                     </a>
                   </div>
                   <div class="meta">
-                    <span>views</span>
+                    <span>
+                      <i class="icon unhide"></i> {{ $video->views }} views
+                    </span>
                   </div>
 
                   <div class="extra">

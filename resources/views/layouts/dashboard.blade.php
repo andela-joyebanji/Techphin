@@ -18,19 +18,30 @@
   <script>
   $(document)
       .ready(function() {
-          
+
               $('.ui.dropdown').dropdown();
             });
   </script>
+  <style>
+    @media only screen and (max-width: 700px) {
+      #navBarContext #browse, #navBarContext #upload {
+        display: none !important;
+      }
+
+      #navBarContext .dropdown.link.item #username {
+        display: none !important;
+      }*/
+    }
+  </style>
   @yield('styles')
 </head>
 <body>
 
 @include('partials.topnav')
 <div class="ui bottom basic segment container pushable">
-  <div class="ui grid">
+  <div class="ui grid stackable" style="min-height: 50px;">
 
-    <div class="four wide column" style="min-height: 600px;">
+    <div class="four wide column">
       @include('partials.sidenav')
     </div>
     <div class="twelve wide column">
