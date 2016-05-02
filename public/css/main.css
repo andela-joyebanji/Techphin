@@ -26,9 +26,9 @@ html, .ui.header {
 }
 
   a#logo-text h1 {
-      font-family: 'Lora', serif;
+      font-family: 'Lobster', cursive;
       font-weight: 700;
-      font-size: 35px;
+      font-size: 40px;
       color: #43a6eb;
     }
 

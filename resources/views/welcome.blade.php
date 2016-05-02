@@ -8,7 +8,7 @@
 
   <!-- Site Properties -->
   <title>Homepage - Techphin </title>
-  <link href='https://fonts.googleapis.com/css?family=Lora:700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="{!! resolve_asset('semantic/semantic.min.css') !!}">
   <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/master/devicon.min.css">
@@ -33,7 +33,7 @@
                   </form>
       <div class="right menu">
         <div class="item">
-          <button class="ui blue basic button">Login </button>
+          <a class="ui blue basic button" href="{{ resolve_url('/login') }}"> <i class="sign in icon"></i>Login </a>
         </div>
       </div>
     </div>

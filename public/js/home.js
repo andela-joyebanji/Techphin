@@ -12,7 +12,7 @@ $(document)
                 }
             });
             $('.ui.dropdown').dropdown();
-            $('.ui.sticky').sticky({ context: '#popular-videos',offset: 80});
+            $('.ui.sticky').sticky({ context: '#popular-videos',offset: 90});
             $('#popular-videos .cards .image').dimmer({
                 on: 'hover'
             });
