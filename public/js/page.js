@@ -23,4 +23,8 @@ $(document)
           inline : true,
           on     : 'blur'
         });
+
+        // create sidebar and attach to menu open
+        $('.ui.sidebar')
+        .sidebar('attach events', '.sidebar.tigger');
     });

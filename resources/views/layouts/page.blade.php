@@ -23,8 +23,27 @@
   </style>
   @yield('styles')
 </head>
-<body>
+<body class="pushable">
 
+
+<div class="ui vertical sidebar menu left">
+  <a class="active item">Home</a>
+  <div class="item">
+    <div class="header">Categories</div>
+    <div class="menu">
+        @if (isset($categories))
+          @foreach ($categories as $category)
+            <a class="item" href="{{ resolve_url('/videos/category/'.$category->name) }}">
+              {{ $category->name }}
+            </a>
+
+          @endforeach
+        @endif
+    </div>
+  </div>
+  <a class="item">Login</a>
+  <a class="item">Signup</a>
+</div>
   <!-- Page Contents -->
     <div class="pusher">
         <div class="ui fixed top borderless menu" id="navBarContext">
@@ -43,12 +62,13 @@
 
 
                 <div class="right menu">
-                    <div class="item">
+                    <div class="item" id="upload">
                         <a class="ui blue button" href="{{ resolve_url('/user/upload') }}">Upload </a>
                     </div>
                     @if (auth()->user())
                         <div class="ui dropdown pointing item" >
-                            {{  auth()->user()->username }}
+                            <span id="username">{{  auth()->user()->username }}</span>
+
                             <img class="ui avatar image" src="{{ auth()->user()->image }}">
                             <i class="dropdown icon"></i>
                             <div class="menu">
