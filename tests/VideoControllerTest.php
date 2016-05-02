@@ -1,18 +1,14 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class VideoControllerTest extends TestCase
 {
-
     public function testVideoUploadWhenAllFieldsArePassedCorrectly()
     {
         $user = factory(Pyjac\Techphin\User::class)->create();
         $category = factory(Pyjac\Techphin\Category::class)->create();
 
-          $this->actingAs($user)
+        $this->actingAs($user)
           ->visit('/user/upload')
           ->type('PHP Programming', 'title')
           ->type('https://www.youtube.com/watch?v=7TF00hJI78Y', 'link')
