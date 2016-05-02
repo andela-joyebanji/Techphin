@@ -104,18 +104,4 @@ class UserDashboardController extends Controller
 
         return view('user.editVideo', compact('video', 'tags', 'categories'));
     }
-
-    /**
-     * Upload the video.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function storeVideo(VideoUploadRequest $request)
-    {
-        $video = new Video($request->all());
-        $video = $request->user()->videos()->save($video);
-        $video->attachTagsToVideo(explode(',', trim($request->tags)));
-
-        return redirect()->back()->with('success', "Video Successfully Uploaded. Click <a href='/videos/$video->id'>here</a> to view video");
-    }
 }
