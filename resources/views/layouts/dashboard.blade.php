@@ -30,7 +30,10 @@
 
       #navBarContext .dropdown.link.item #username {
         display: none !important;
-      }*/
+      }
+    }
+    .pushable .ui.grid.stackable {
+      min-height: 550px;
     }
   </style>
   @yield('styles')
@@ -39,7 +42,7 @@
 
 @include('partials.topnav')
 <div class="ui bottom basic segment container pushable">
-  <div class="ui grid stackable" style="min-height: 50px;">
+  <div class="ui grid stackable">
 
     <div class="four wide column">
       @include('partials.sidenav')
