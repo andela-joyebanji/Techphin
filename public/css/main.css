@@ -136,6 +136,10 @@ html, .ui.header {
       font-size: 0.9em;
     }
 
+    #categories {
+      z-index: 2;
+    }
+
     #categories .icon {
       padding-right: 0;
       font-size: 2em;

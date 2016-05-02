@@ -3,11 +3,10 @@
 @section('styles')
 <script type="text/javascript">
   $(document).ready(function() {
-
     $.fn.api.settings.api.favourite = "{{ resolve_url('/api/favourite/{videoId}') }}";
     $('.ui.embed').embed({
       parameters: {
-        autoplay: true
+        autoplay: $(window).width() > 767 ? true : false,
       }
     });
     $('#like .button').api({
@@ -52,9 +51,16 @@
 </style>
 @stop @section('pageContent')
 <div class="ui grid stackable centered" id="video">
-  <div class="thirteen wide column">
-    <div class="ui embed" data-source="youtube" data-id="{{ substr($video->link, 32) }}" data-icon="video"></div>
+  <div class="computer tablet only row">
+    <div class="thirteen wide column">
+      <div class="ui embed computer only" data-source="youtube" data-id="{{ substr($video->link, 32) }}" data-icon="video"></div>
+    </div>
   </div>
+  <div class="mobile only row">
+    <iframe class="tablet only" src="https://www.youtube.com/embed/{{ substr($video->link, 32) }}?autoplay=0&cc_load_policy=1&color=white&theme=light"
+                width="560" height="345" frameborder="0" allowfullscreen=""></iframe>
+  </div>
+
 </div>
 
 <div class="ui grid stackable centered">
