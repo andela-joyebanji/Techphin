@@ -78,7 +78,8 @@ class Video extends Model
 
     public function scopePopular($query, $limit = 12)
     {
-        return $query->with(['category', 'owner'])->take($limit);
+        return $query->with(['category', 'owner'])
+                     ->orderBy('views', 'desc')->take($limit);
     }
 
     public function incrementViews()
