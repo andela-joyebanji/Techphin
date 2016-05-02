@@ -1,8 +1,11 @@
 <?php
 
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class VideoControllerTest extends TestCase
 {
+    use DatabaseTransactions;
+
     public function testVideoUploadWhenAllFieldsArePassedCorrectly()
     {
         $user = factory(Pyjac\Techphin\User::class)->create();
