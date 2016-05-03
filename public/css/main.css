@@ -115,6 +115,11 @@ html, .ui.header {
       font-size: 0.97em;
     }
 
+    #popular-videos .left.aligned.header,
+    #categories .header.dividing {
+      color: #555;
+    }
+
     #popular-videos .ui.cards > .card {
       box-shadow: none;
     }

@@ -35,6 +35,15 @@
     .pushable .ui.grid.stackable {
       min-height: 550px;
     }
+
+    .ui.statistics .statistic>.value .icon,
+    .ui.statistics .statistic>.label,
+    .ui.statistics .statistic>.value,
+    .pusher .header.dividing {
+      color: #555;
+    }
+
+
   </style>
   @yield('styles')
 </head>

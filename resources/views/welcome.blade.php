@@ -61,7 +61,7 @@
          Browse, Learn and Upload
         </h1>
        <h2>Browse through uploaded videos and Learn new stuffs. Upload videos you like and spread the knowledge.</h2>
-        <button id="browse-vid" class="huge primary ui button"><i class="upload cloud icon"></i>Browse Videos</button>
+        <button id="browse-vid" class="huge primary ui button">Browse Videos</button>
       </div>
 
      <div class="ui stackable two column grid container" >

@@ -48,7 +48,10 @@ class PagesController extends Controller
      */
     public function video(Video $video)
     {
-        $relatedVideos = $video->relatedVideos();
+        $relatedVideos = $video->relatedVideos()->get();
+        if(empty($relatedVideos)) {
+            $relatedVideos = $video->relatedCategoryVideos()->get();
+        }
         $comments = $video->comments()->get();
 
         return view('video', compact('video', 'relatedVideos', 'comments'));
