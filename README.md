@@ -6,7 +6,7 @@
 
 [Techphin](https://techphin.herokuapp.com) is a learning platform that is open to people interested in the latest technologies online (Youtube hosted videos).
 
-To share content you can conveniently register with your favourite social network [Facebook, Github or Twitter]. Non-
+To share content you can conveniently register with your favourite social network (Facebook, Github or Twitter). Non-
 registered users can also use the site without much restrictions.
 
 ##Features
