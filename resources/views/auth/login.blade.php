@@ -43,9 +43,16 @@
             <input type="password" name="password" placeholder="Password">
           </div>
         </div>
-        <button class="ui fluid large primary submit button">Login</button>
+        <div class="inline field">
+          <button class="ui fluid large primary submit button">Login</button>
+        </div>
+        <div class="inline field">
+          <label><a href="{{ resolve_url('/password/reset') }}">Forgot password?</a></label>
+        </div>
     </form>
+
   </div>
+
   <div id="social" class="ui center aligned basic segment">
     <h4 class="ui horizontal divider header">
       <i class="tag icon"></i>

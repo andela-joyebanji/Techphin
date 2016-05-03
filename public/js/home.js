@@ -4,6 +4,7 @@ $(document)
         $('.masthead')
             .visibility({
                 once: false,
+                offset : 40,
                 onBottomPassed: function() {
                     $('.fixed.menu').transition('fade in');
                 },
@@ -18,7 +19,7 @@ $(document)
             });
         function scrollToID(aid){
             var aTag = $("#"+ aid );
-            $('html,body').animate({scrollTop: aTag.offset().top - 30},'slow');
+            $('html,body').animate({scrollTop: aTag.offset().top - 73},'slow');
         }
 
         $("#browse-vid").click(function() {
