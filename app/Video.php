@@ -73,7 +73,10 @@ class Video extends Model
 
     public function scopeRelatedVideos($query, $limit = 5)
     {
-        return $query->where('category_id', '>', $this->category_id)->take(5)->get();
+        return $query->where('category_id', '=', $this->category_id)
+                     ->where('videos.id', '!=', $this->id)
+                     ->orderBy('views', 'desc')
+                     ->take($limit);
     }
 
     public function scopePopular($query, $limit = 12)
@@ -105,6 +108,6 @@ class Video extends Model
      */
     public function scopeSearch($query, $queryString)
     {
-        return $query->where('title', 'like', "%$queryString%");
+        return $query->whereRaw('LOWER(title) like ?', ['%'.strtolower($queryString).'%']);
     }
 }

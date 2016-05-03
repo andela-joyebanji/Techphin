@@ -5,10 +5,10 @@
     </a>
     <div class="right menu">
       <div class="item" id="browse">
-        <a class="ui blue button" href="{{ resolve_url('videos') }}">Browse videos</a>
+        <a class="ui basic blue button" href="{{ resolve_url('videos') }}">Browse videos</a>
       </div>
       <div class="item" id="upload">
-        <a class="ui blue basic button" href="{{ resolve_url('user/upload') }}">Upload</a>
+        <a class="ui blue button" href="{{ resolve_url('user/upload') }}">Upload</a>
       </div>
       <div class="ui dropdown link item">
          <span id="username">{{  auth()->user()->username }}</span>

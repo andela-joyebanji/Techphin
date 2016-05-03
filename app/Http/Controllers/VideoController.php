@@ -7,7 +7,6 @@ use Pyjac\Techphin\Video;
 
 class VideoController extends Controller
 {
-
     /**
      * Store a newly created video in storage.
      *
