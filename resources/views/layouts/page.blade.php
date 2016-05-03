@@ -97,6 +97,7 @@
         </div>
         @include('partials.footer')
     </div>
+    <script src="{{ resolve_asset('js/close.js') }}"></script>
     @yield('scripts')
 </body>
 </html>

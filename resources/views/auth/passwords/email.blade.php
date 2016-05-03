@@ -1,47 +1,69 @@
-@extends('layouts.app')
+@extends('layouts.auth')
+@section('title', 'Reset Password')
+@section('styles')
+  <style>
+    #main-container {
+      margin-top: 10em;
+    }
 
-<!-- Main Content -->
+    .footer .container {
+      margin-top: 12em;
+    }
+  </style>
+@stop
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
 
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/email') }}">
-                        {!! csrf_field() !!}
+<div class="ui column segment">
+  <a class="item ui header" id="logo-text" href="{{ resolve_url('/') }}">
+        <h1>Techphin</h1>
+  </a>
+  <h2 class="ui header">
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" value="{{ old('email') }}">
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-envelope"></i>Send Password Reset Link
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+    <div class="content">
+      Password Reset
     </div>
-</div>
-@endsection
+  </h2>
+  <p style="font-size: 16px;">Just enter the email address you used to Sign Up and we'll help you get your password back.</p>
+  <div class="ui basic segment">
+    <form class="ui large form" method="POST" action="{{ url('/password/email') }}">
+      <div class="ui error message">
+
+        @unless (count($errors) === 0)
+        <script>
+          $(document).ready(function() {
+            $('.ui.error.message').show();
+          });
+        </script>
+          <ui class="list">
+            @foreach ($errors->all() as $message)
+              <li>{{ $message }}</li>
+            @endforeach
+          </ui>
+        @endunless
+      </div>
+      {!! csrf_field() !!}
+      @if (session('status'))
+          <div class="ui visible success message">
+            <i class="close icon"></i>
+            <div class="header">
+              Success
+            </div>
+            <p>{{ session('status') }}</p>
+          </div>
+      @endif
+
+        <div class="field {{ $errors->has('email') ? 'error' : '' }}">
+          <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input type="email" name="email" value="{{ old('email') }}" placeholder="E-mail address">
+          </div>
+        </div>
+        <button type="submit" class="ui fluid large primary submit button">
+            <i class="icon envelope"></i>Send Password Reset Link
+        </button>
+    </form>
+    <div class="ui message">
+        <a href="{{ resolve_url('/login') }}">Return to Log In</a>
+    </div>
+  </div>
+@stop
