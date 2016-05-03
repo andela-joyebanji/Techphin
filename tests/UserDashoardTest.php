@@ -13,6 +13,16 @@ class UserDashoardTest extends TestCase
              ->see('Dashboard');
     }
 
+    public function testDashboardVideosViewCount()
+    {
+        //$user = factory(Pyjac\Techphin\User::class)->create();
+        $video = factory(Pyjac\Techphin\Video::class)->create();
+        $this->actingAs($video->owner)
+             ->visit('/videos/'.$video->id)
+             ->visit('/user/dashboard')
+             ->see('<i class="icon unhide"></i> 1');
+    }
+
     public function testVideoUploadedNoVideos()
     {
         $user = factory(Pyjac\Techphin\User::class)->create();
