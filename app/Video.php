@@ -2,7 +2,6 @@
 
 namespace Pyjac\Techphin;
 
-use DB;
 use Illuminate\Database\Eloquent\Model;
 
 class Video extends Model
@@ -109,6 +108,6 @@ class Video extends Model
      */
     public function scopeSearch($query, $queryString)
     {
-        return $query->whereRaw("LOWER(`title`) like ?", ['%'.strtolower($queryString).'%']);
+        return $query->whereRaw('LOWER(`title`) like ?', ['%'.strtolower($queryString).'%']);
     }
 }

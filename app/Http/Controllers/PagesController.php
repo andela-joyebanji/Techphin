@@ -49,7 +49,7 @@ class PagesController extends Controller
     public function video(Video $video)
     {
         $relatedVideos = $video->relatedVideos()->get();
-        if(empty($relatedVideos)) {
+        if (empty($relatedVideos)) {
             $relatedVideos = $video->relatedCategoryVideos()->get();
         }
         $comments = $video->comments()->get();
