@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-
 use Mockery as m;
 
 class PasswordResetTest extends TestCase
@@ -36,13 +35,13 @@ class PasswordResetTest extends TestCase
         $user = factory(Pyjac\Techphin\User::class)->create();
         $mock = m::mock($this->app['mailer']->getSwiftMailer());
         $this->app['mailer']->setSwiftMailer($mock);
-            $mock
+        $mock
                 ->shouldReceive('send')
-                ->withArgs([m::on(function($message) use ($user)
-                {
+                ->withArgs([m::on(function ($message) use ($user) {
                     $this->assertEquals('Your Password Reset Link', $message->getSubject());
                     $this->assertSame([$user->email => null], $message->getTo());
                     $this->assertContains('Click here to reset your password:', $message->getBody());
+
                     return true;
                 }), m::any()])
                 ->once();
@@ -57,10 +56,9 @@ class PasswordResetTest extends TestCase
         $user = factory(Pyjac\Techphin\User::class)->create();
         $mock = m::mock($this->app['mailer']->getSwiftMailer());
         $this->app['mailer']->setSwiftMailer($mock);
-            $mock
+        $mock
                 ->shouldReceive('send')
-                ->withArgs([m::on(function($message) use ($user)
-                {
+                ->withArgs([m::on(function ($message) use ($user) {
                     return true;
                 }), m::any()])
                 ->once();
@@ -71,13 +69,11 @@ class PasswordResetTest extends TestCase
         $uuid = DB::table('password_resets')
                         ->where('email', '=', $user->email)
                         ->value('token');
-        $this->visit('/password/reset/' . $uuid)
+        $this->visit('/password/reset/'.$uuid)
                     ->type($user->email, 'email')
-                    ->type('123456','password')
-                    ->type('123456','password_confirmation')
+                    ->type('123456', 'password')
+                    ->type('123456', 'password_confirmation')
                     ->press('Reset Password')
                     ->seePageIs('/videos');
     }
-
-
 }
